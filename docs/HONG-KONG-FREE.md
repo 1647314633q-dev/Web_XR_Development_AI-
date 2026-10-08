@@ -2,7 +2,7 @@
 
 2026-10-09：按使用者要求開放自行註冊。登入頁按「首次使用？免費建立帳戶」，輸入顯示名稱並保存一次性顯示的個人金鑰。新帳戶為普通成員，可建立房間及保存自己的紀錄；不能管理其他帳戶。部署 vars.PUBLIC_REGISTRATION 設為字串 true；設 false 可關閉。每個 IP 每 UTC 日最多 3 個註冊名額，整站每日 100 個；不構成帳戶級 TURN 費用硬上限。
 
-本次 24 項程式檢查通過，Worker 版本 61e783a1-6adb-47b6-a757-31fa8a845c3b。正式 health 200、registrationEnabled=true，匿名私人紀錄與帳戶管理仍 401。公開 GitHub 只包含部分來源，不能等同完整可編譯專案；README 已明確說明。清理快取與重複 README，檢查 4 次歷史提交的 16 個不同檔案版本未發現有效密鑰。
+本次 24 項程式檢查通過，Worker 版本 61e783a1-6adb-47b6-a757-31fa8a845c3b。正式 health 200、registrationEnabled=true，匿名私人紀錄與帳戶管理仍 401。GitHub 最初只有部分來源，後續已整理為 119 個公開來源／文件檔案，補齊獨立 Worker 的安裝建置流程。乾淨副本重新 npm ci、下載及校驗 runtime、24 項檢查、建置與啟動均通過；本機服務實測註冊、登入、房間、訪客及私人紀錄隔離。清理快取與重複 README，初始 4 次歷史提交的 16 個不同檔案版本未發現有效密鑰。
 
 範圍：香港 Android Chrome 的雙人貨品驗收試用。使用自己的 Cloudflare 帳戶、Workers Free、D1 和免費 `workers.dev` HTTPS 網址。保留真正的 Wonderland Engine 1.6.1、條碼核對、遠程指令、清單與紀錄。沒有購買香港 VPS、域名或升級付費方案。
 
