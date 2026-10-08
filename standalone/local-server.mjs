@@ -16,7 +16,7 @@ if (!bootstrapKey) {
   try { bootstrapKey = (await readFile('.local-data/independent-bootstrap.txt', 'utf8')).trim(); }
   catch { bootstrapKey = Array.from(crypto.getRandomValues(new Uint8Array(32)), b => b.toString(16).padStart(2, '0')).join(''); await writeFile('.local-data/independent-bootstrap.txt', bootstrapKey, {mode: 0o600, flag: 'wx'}); }
 }
-const mime = {'.html': 'text/html;charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.wasm': 'application/wasm', '.bin': 'application/octet-stream', '.tflite': 'application/octet-stream', '.json': 'application/json'};
+const mime = {'.html': 'text/html;charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.css': 'text/css', '.wasm': 'application/wasm', '.bin': 'application/octet-stream', '.tflite': 'application/octet-stream', '.json': 'application/json', '.svg': 'image/svg+xml'};
 const env = {...process.env, AUTH_BOOTSTRAP_KEY: bootstrapKey, DB: db, ASSETS: {async fetch(request) {
   let relative = decodeURIComponent(new URL(request.url).pathname);
   if (relative === '/' || relative === '/workspace') return Response.redirect(new URL('/workspace/', request.url), 302);

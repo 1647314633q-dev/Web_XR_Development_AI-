@@ -14,6 +14,7 @@
  button:focus-visible{outline:3px solid #b5d995}button:disabled{opacity:.55;cursor:wait}
  #capability,#status,#tracking-status{margin:0;padding:7px 16px;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
  #reference-panel,#advanced-options{padding:8px 16px;font-size:13px;line-height:1.6}
+ #instruction-tools{padding:8px 16px;display:flex;gap:7px;flex-wrap:wrap;align-items:center;font-size:12px}#instruction-tools input,#instruction-tools select{padding:8px;border:1px solid #8aad8d55;border-radius:6px;background:#214c40;color:#fff;font:inherit;max-width:100%}#instruction-tools input{flex:1;min-width:130px}#instruction-tools label{display:flex;align-items:center;gap:6px}#ar-pending{background:#d6d98f;color:#153b30;font-weight:700;flex-basis:100%}#instruction-tools p{margin:0;flex-basis:100%;line-height:1.6} .xr-active #instruction-tools{background:#123532ed}
  #reference-summary{font-weight:700;color:#d6d98f}#reference-progress{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}#reference-progress[hidden]{display:none}
  [data-reference]{border:1px solid #739384;padding:4px 7px;border-radius:5px}[data-reference].accepted{background:#315e45;border-color:#a8d39b}
  #confirm-point{background:#d6d98f;color:#153b30;font-weight:700}#confirm-point:disabled{cursor:default}summary{cursor:pointer}
@@ -31,12 +32,13 @@
   <div class="bar">
    <b>◈ WONDERLAND ENGINE <span id="view-mode">3D 預覽 · AR 尚未啟動</span></b>
    <div>
-    <button id="video-view">鏡頭平面</button><button id="reset">重設視角</button>
+    <button id="video-view">鏡頭平面</button><button id="reset">重設視角</button><button id="annotation-demo">示範 AR 標籤</button>
     <button id="confirm-point" disabled>設定工作區</button><button id="add-pin" disabled>＋ 新增空間標記</button>
     <button id="calibrate">重設工作區</button><button id="clear-space">清除標記</button><button id="exit-ar">離開 AR</button>
     <button id="ar-button" disabled>進入 AR ↗</button>
    </div>
   </div>
+  <div id="instruction-tools"><label>指令 <select id="ar-tool"><option value="label">文字標籤</option><option value="arrow">箭頭：起點 → 終點</option><option value="circle">圈選：兩端位置</option><option value="line">畫線：逐點記錄</option></select></label><input id="ar-text" maxlength="120" value="檢查這裡" aria-label="AR 標籤文字"><button id="ar-mark" disabled>放置文字標籤</button><button id="ar-finish" hidden disabled>完成畫線</button><button id="ar-pending" hidden disabled>固定這個指令</button><p>黃色球是定位游標。先設定工作區，再對準實物確認文字或圖形位置；設備移動後重新放置。遠程畫面指令需現場確認，並非自動推算深度。</p></div>
   <p id="capability">正在檢查裝置的 AR 支援…</p>
   <div id="reference-panel"><div id="reference-summary" role="status">進入 AR 後，對準桌面設定工作區</div></div>
   <p id="tracking-status">AR 尚未啟動</p>

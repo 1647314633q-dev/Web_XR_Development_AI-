@@ -6,7 +6,7 @@ import {createSessionService} from './lib/session-service.mjs';
 const root=path.resolve('public/workspace');
 const db=openLocalDatabase('.local-data/visionlink.sqlite');
 const handle=createSessionService({db,env:process.env});
-const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.wasm':'application/wasm','.json':'application/json','.bin':'application/octet-stream','.ttf':'font/ttf','.png':'image/png','.jpg':'image/jpeg'};
+const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.wasm':'application/wasm','.json':'application/json','.svg':'image/svg+xml','.bin':'application/octet-stream','.ttf':'font/ttf','.png':'image/png','.jpg':'image/jpeg'};
 const server=http.createServer(async(req,res)=>{try{
  const url=new URL(req.url,'http://localhost:4173');
  if(url.pathname.startsWith('/api/')){

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "demo": true,
+  "items": [
+    {"sku":"VL-2048","name":"電子零件貨箱","model":"Parts Kit 2048","stock":48,"location":"香港示範倉 · A-03","aliases":[],"history":[{"date":"2026-09-18","text":"示範：入庫 60 箱，抽查封口及外箱"},{"date":"2026-10-02","text":"示範：領用 12 箱，待覆核外箱邊角"}]},
+    {"sku":"A102","name":"Motor A","model":"示範輸送帶馬達 M-102","stock":3,"location":"香港示範倉 · 設備備件區","aliases":["Motor A"],"history":[{"date":"2026-09-12","text":"示範：更換軸承並測試運轉"},{"date":"2026-10-01","text":"示範：下次巡檢核對接線與異音"}]},
+    {"sku":"V003","name":"Valve 03","model":"示範控制閥 V-03","stock":8,"location":"香港示範倉 · B-02","aliases":["Valve 03"],"history":[{"date":"2026-09-22","text":"示範：更換密封圈"},{"date":"2026-10-03","text":"示範：完成漏水檢查"}]},
+    {"sku":"VL-2051","name":"包裝耗材貨箱","model":"Packing Set 2051","stock":24,"location":"香港示範倉 · A-04","aliases":[],"history":[{"date":"2026-10-04","text":"示範：入庫後人工核對數量"}]}
+  ]
+}

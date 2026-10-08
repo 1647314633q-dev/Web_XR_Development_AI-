@@ -6,7 +6,7 @@ const root = path.resolve(fileURLToPath(new URL('..', import.meta.url)));
 const destination = path.join(root, 'artifacts/public-source');
 const entries = [];
 const roots = ['.env.example','.gitignore','README.md','SECURITY.md','package.json','package-lock.json','cloudflare-env.d.ts','drizzle.config.ts','next-env.d.ts','next.config.ts','postcss.config.mjs','server.mjs','tsconfig.json','vite.config.ts','app','build','db','docs','drizzle','lib','licenses','scripts','tests','vendor','wonderland','standalone','public/workspace'];
-const extensions = new Set(['.js','.mjs','.mts','.ts','.tsx','.css','.html','.md','.sql','.json','.jsonc','.wlp','.txt','.py','.ps1','.sh','.LICENSE']);
+const extensions = new Set(['.js','.mjs','.mts','.ts','.tsx','.css','.html','.md','.sql','.json','.jsonc','.wlp','.txt','.py','.ps1','.sh','.LICENSE','.svg']);
 const skip = relative => /(?:^|\/)(?:node_modules|deploy|cache|\.cache|\.git|\.local-data|\.openai|\.wrangler|\.sites-runtime)(?:\/|$)/.test(relative)
   || /\.local\.|\.map(?:\.gz)?$|\.tsbuildinfo$|\.log$/.test(relative)
   || ['scripts/refine.py','scripts/finalize.py'].includes(relative)

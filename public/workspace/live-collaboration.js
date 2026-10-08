@@ -1,8 +1,9 @@
 import {RemoteAi,canSend,validFrameId,validSpatialPin,validSpatialPose} from './collaboration-protocol.js';
 import {SharedView} from './shared-view.js';
+import {validAnnotation} from './annotation-protocol.js';
 export function installLiveCollaboration({state,$,sendMessage,engineMessage,renderResults,drawOverlay,toast,addNote}){
  const remoteAI=new RemoteAi();state.remoteAI=remoteAI;state.aiStreamId=crypto.randomUUID();state.aiSeq=0;state.spatialFrame=crypto.randomUUID();state.spatialPins=[];state.calibrated=false;state.remoteCalibrated=false;
- const share=new SharedView({source:()=>state.imageSource||((state.stream&&$('localVideo').readyState>=2)?$('localVideo'):null),items:()=>state.ai?state.detections:[],pins:()=>state.pins.filter(p=>p.target==='local'),onChange:()=>state.refreshVideo()});state.sharedView=share;
+ const share=new SharedView({source:()=>state.imageSource||((state.stream&&$('localVideo').readyState>=2)?$('localVideo'):null),items:()=>state.ai?(state.decorateAI?.(state.detections)||state.detections):[],pins:()=>state.pins.filter(p=>p.target==='local'),onChange:()=>state.refreshVideo()});state.sharedView=share;
  state.outputTrack=()=>share.xrActive?share.getTrack(null):state.imageSource?share.ensure():state.stream?share.getTrack(state.stream.getVideoTracks()[0]):null;
  state.refreshVideo=async()=>{try{await state.cameraSender?.replaceTrack(state.outputTrack());sendMessage({type:'camera',enabled:!!state.outputTrack()});state.publishAI();}catch(e){toast('共享畫面無法切換：'+e.message);}};
  state.aiSource=()=>share.xrActive?(share.xr&&performance.now()-share.xr.received<600?share.xr.bitmap:null):state.imageSource||$('localVideo');
@@ -38,7 +39,7 @@ export function installLiveCollaboration({state,$,sendMessage,engineMessage,rend
   if(data.type==='spatial-pose'&&validSpatialPose(data,state.spatialFrame)&&canSend(state.channel))sendMessage(data);
   if(data.type==='spatial-clear'){state.spatialPins=[];sendMessage({type:'spatial-clear',frame:state.spatialFrame});spatialStatus();}
   if(data.type==='xr-share-status'){share.setXR(!!data.active,!!data.supported);$('shareStatus').textContent=data.active?data.supported?'AR 鏡頭及空間標記正在共享':'此裝置未提供 AR 鏡頭共享；夥伴影像暫停':'鏡頭、AI 框和畫面標記可同步共享';}
-  if(data.type==='xr-camera-frame'&&data.bitmap instanceof ImageBitmap){if(!share.xrActive){data.bitmap.close();return;}share.receiveXR(data.bitmap,Array.isArray(data.points)?data.points.slice(0,100):[]);if(!state.worker&&state.ai)state.startXRai?.();}
+  if(data.type==='xr-camera-frame'&&data.bitmap instanceof ImageBitmap){if(!share.xrActive){data.bitmap.close();return;}share.receiveXR(data.bitmap,Array.isArray(data.points)?data.points.slice(0,100):[],Array.isArray(data.annotations)?data.annotations.filter(validAnnotation).slice(0,64):[]);if(!state.worker&&state.ai)state.startXRai?.();}
  };
  $('shareAnnotated').onchange=()=>{share.setEnabled($('shareAnnotated').checked);$('shareStatus').textContent=share.enabled?'鏡頭、AI 框和画面標記可同步共享':'共享原始鏡頭；夥伴按 AI 結果繪製偵測框';};
  let wasFresh=false;setInterval(()=>{const fresh=!!remoteAI.current(performance.now());if(fresh!==wasFresh){wasFresh=fresh;renderResults();}if(state.view==='remote')drawOverlay();},500);
