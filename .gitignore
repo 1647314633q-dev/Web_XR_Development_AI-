@@ -32,3 +32,25 @@ VisionLink-*.txt
 .agents/
 .openai/
 standalone/wrangler.*.local.*
+
+# Downloaded or generated browser runtimes and models.
+*.wasm
+*.onnx
+*.tflite
+*.bin
+*.gz
+*.map
+public/workspace/vendor/*
+!public/workspace/vendor/APACHE-2.0.txt
+!public/workspace/vendor/damage/
+public/workspace/vendor/damage/*
+!public/workspace/vendor/damage/model-card.json
+!public/workspace/vendor/damage/ATTRIBUTION.txt
+!public/workspace/vendor/damage/TORCHVISION-LICENSE.txt
+!public/workspace/vendor/mediapipe/
+public/workspace/vendor/mediapipe/*
+!public/workspace/vendor/mediapipe/models/
+public/workspace/vendor/mediapipe/models/*
+!public/workspace/vendor/mediapipe/models/manifest.json
+public/workspace/wonderland/*
+!public/workspace/wonderland/index.html

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "baseUrl": "https://visionlink-hk.visionlink-workspace.workers.dev/",
+  "assets": [
+    {
+      "path": "public/workspace/wonderland/VisionLink-app.js",
+      "bytes": 37879,
+      "sha256": "9286a2855eb184f75056300859d11a1ad7e8537015caf362578248fbe8d42d4d"
+    },
+    {
+      "path": "public/workspace/wonderland/VisionLink.bin",
+      "bytes": 259212,
+      "sha256": "6e03637ed29ff2da8f8b9a9eecb185731a6abe2171c3baea21f74aab09e848ea"
+    },
+    {
+      "path": "public/workspace/wonderland/WonderlandRuntime-LoadingScreen.bin",
+      "bytes": 313900,
+      "sha256": "3e97cbc6245d7d9303fcd95af9b6e5bc06b4054c30bddac8ba0943cd1e996488"
+    },
+    {
+      "path": "public/workspace/wonderland/WonderlandRuntime.js",
+      "bytes": 163195,
+      "sha256": "47c84baf76428de5ec6b170ce335a3a21d466aa07003ce8bd6d4717c366bc66d"
+    },
+    {
+      "path": "public/workspace/wonderland/WonderlandRuntime.wasm",
+      "bytes": 2019770,
+      "sha256": "654a5735b184adb1534a03141f1c1a0a139346ebe952c9ebde8c060983e3167a"
+    },
+    {
+      "path": "public/workspace/wonderland/WonderlandRuntime-threads.js",
+      "bytes": 187850,
+      "sha256": "6e13f9fe9995e7af98c9cb222c707dbb85bfe202f4af0023bad46e1b012ca6a2"
+    },
+    {
+      "path": "public/workspace/wonderland/WonderlandRuntime-threads.wasm",
+      "bytes": 2049051,
+      "sha256": "24f6a4d6912e6eb373d16d686458db0e73247d1a9ebf37f92bcc604db21ea67a"
+    },
+    {
+      "path": "public/workspace/wonderland/vendor/index.js",
+      "bytes": 174457,
+      "sha256": "5bd4efc1b2c4a844ec7f6ee47caf500b4a931a7d6a8521860686de37dc210aef"
+    },
+    {
+      "path": "public/workspace/vendor/damage/model.onnx",
+      "bytes": 4014966,
+      "sha256": "f8f17b0939ac3ae06b58f63a8fd7d1d323ee26336718e8df72d9d5f8db31637b"
+    }
+  ]
+}

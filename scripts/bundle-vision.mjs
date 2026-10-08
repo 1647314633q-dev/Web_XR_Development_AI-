@@ -1,0 +1,17 @@
+import {build} from 'esbuild';
+import {mkdirSync,copyFileSync,cpSync,existsSync} from 'node:fs';
+mkdirSync('public/workspace/vendor',{recursive:true});
+copyFileSync('node_modules/@zxing/library/LICENSE','public/workspace/vendor/APACHE-2.0.txt');
+await build({stdin:{contents:"export {MultiFormatReader, BinaryBitmap, HybridBinarizer, RGBLuminanceSource} from '@zxing/library';",resolveDir:process.cwd()},bundle:true,format:'esm',platform:'browser',minify:true,outfile:'public/workspace/vendor/zxing.mjs'});
+console.log('Bundled browser-local ZXing barcode reader.');
+const mediaPipe='public/workspace/vendor/mediapipe';
+mkdirSync(mediaPipe,{recursive:true});
+copyFileSync('node_modules/@mediapipe/tasks-vision/vision_bundle.mjs',`${mediaPipe}/vision_bundle.mjs`);
+cpSync('node_modules/@mediapipe/tasks-vision/wasm',`${mediaPipe}/wasm`,{recursive:true});
+if(!existsSync(`${mediaPipe}/models/face-detector.tflite`)||!existsSync(`${mediaPipe}/models/object-detector.tflite`))throw new Error('Run npm run prepare:models before building.');
+console.log('Copied browser-local MediaPipe runtime and WASM.');
+const ort='public/workspace/vendor/ort';mkdirSync(ort,{recursive:true});
+for(const file of ['ort.wasm.min.mjs','ort-wasm-simd-threaded.mjs','ort-wasm-simd-threaded.wasm'])copyFileSync('node_modules/onnxruntime-web/dist/'+file,ort+'/'+file);
+copyFileSync('licenses/ONNX-RUNTIME-MIT.txt',ort+'/LICENSE.txt');
+copyFileSync('licenses/ONNX-RUNTIME-ThirdPartyNotices.txt',ort+'/ThirdPartyNotices.txt');
+console.log('Copied browser-local ONNX Runtime 1.20.1 (one WASM thread).');

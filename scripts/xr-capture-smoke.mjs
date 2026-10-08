@@ -1,0 +1,13 @@
+// Development-only real-WebGL smoke test. No XR support is emulated in the production app.
+import http from 'node:http';
+import {readFile} from 'node:fs/promises';
+const html=`<!doctype html><meta charset="utf-8"><title>AR camera copy smoke test</title><h1>AR 鏡頭擷取程式 · WebGL 驗證</h1><p>這是已知像素與模擬 camera binding 的程式測試，並非手機 AR 實測。</p><p id="status">測試中…</p><canvas id="source" width="2" height="2"></canvas><canvas id="result" width="2" height="2" style="width:160px;height:160px;image-rendering:pixelated"></canvas><script type="module">
+import {XRCameraCapture} from '/xr-camera.js';
+const source=document.getElementById('source'),gl=source.getContext('webgl2');
+const texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,2,2,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([255,0,0,255,0,255,0,255,0,0,255,255,255,255,0,255]));gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+gl.activeTexture(gl.TEXTURE3);gl.viewport(1,2,3,4);gl.enable(gl.SCISSOR_TEST);gl.enable(gl.BLEND);gl.colorMask(true,false,true,false);
+const state=()=>JSON.stringify({viewport:Array.from(gl.getParameter(gl.VIEWPORT)),active:gl.getParameter(gl.ACTIVE_TEXTURE),blend:gl.isEnabled(gl.BLEND),scissor:gl.isEnabled(gl.SCISSOR_TEST),mask:Array.from(gl.getParameter(gl.COLOR_WRITEMASK)),framebuffer:gl.getParameter(gl.FRAMEBUFFER_BINDING),vao:gl.getParameter(gl.VERTEX_ARRAY_BINDING),program:gl.getParameter(gl.CURRENT_PROGRAM)}),before=state();
+const capture=new XRCameraCapture(new EventTarget(),source,{getCameraImage:()=>texture});
+setTimeout(()=>{try{capture.capture({}, {camera:{width:2,height:2}},[],bitmap=>{const ctx=document.getElementById('result').getContext('2d');ctx.drawImage(bitmap,0,0);bitmap.close();const pixels=Array.from(ctx.getImageData(0,0,2,2).data),expected=[0,0,255,255,255,255,0,255,255,0,0,255,0,255,0,255];document.getElementById('status').textContent=JSON.stringify(pixels)===JSON.stringify(expected)&&state()===before?'PASS：像素方向、色彩與原有 WebGL 狀態均正確':'FAIL：像素或 WebGL 狀態不符';capture.destroy();});}catch(e){document.getElementById('status').textContent='FAIL：'+e.message;}},200);
+</script>`;
+http.createServer(async(req,res)=>{if(req.url==='/xr-camera.js'){res.writeHead(200,{'Content-Type':'text/javascript'});res.end(await readFile('wonderland/xr-camera.js'));}else if(req.url==='/'){res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});res.end(html);}else{res.writeHead(404);res.end();}}).listen(4175,'127.0.0.1',()=>console.log('Development WebGL capture test http://127.0.0.1:4175/'));

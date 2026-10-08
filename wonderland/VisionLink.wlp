@@ -1,0 +1,2637 @@
+{
+  "objects": {
+    "76": {
+      "name": "Player",
+      "translation": [
+        0,
+        1.9,
+        5.5
+      ]
+    },
+    "77": {
+      "name": "NonVrCamera",
+      "parent": "76",
+      "rotation": [
+        -0.059964006479444595,
+        0,
+        0,
+        0.9982005399352042
+      ],
+      "components": [
+        {
+          "type": "view",
+          "view": {
+            "fov": 65.0
+          }
+        }
+      ]
+    },
+    "78": {
+      "name": "EyeLeft",
+      "parent": "76",
+      "components": [
+        {
+          "type": "view"
+        },
+        {
+          "type": "input",
+          "input": {
+            "type": "eye left"
+          }
+        }
+      ]
+    },
+    "79": {
+      "name": "EyeRight",
+      "parent": "76",
+      "components": [
+        {
+          "type": "view"
+        },
+        {
+          "type": "input",
+          "input": {
+            "type": "eye right"
+          }
+        }
+      ]
+    },
+    "90": {
+      "name": "InspectionRoot"
+    },
+    "91": {
+      "name": "InspectionLight",
+      "translation": [
+        0,
+        5,
+        4
+      ],
+      "rotation": [
+        -0.35,
+        0,
+        0,
+        0.937
+      ],
+      "components": [
+        {
+          "type": "light",
+          "light": {
+            "type": "point",
+            "intensity": 40.0
+          }
+        }
+      ]
+    },
+    "120": {
+      "name": "Floor",
+      "parent": "90",
+      "translation": [
+        0,
+        -0.1,
+        -1.5
+      ],
+      "scaling": [
+        3.8,
+        0.1,
+        3.2
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "100"
+          }
+        }
+      ]
+    },
+    "121": {
+      "name": "BackWall",
+      "parent": "90",
+      "translation": [
+        0,
+        1.6,
+        -4.4
+      ],
+      "scaling": [
+        3.8,
+        1.7,
+        0.08
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "106"
+          }
+        }
+      ]
+    },
+    "122": {
+      "name": "RackPost",
+      "parent": "90",
+      "translation": [
+        -3.0999999999999996,
+        1.3,
+        -3.6
+      ],
+      "scaling": [
+        0.035,
+        1.3,
+        0.035
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "123": {
+      "name": "RackPost",
+      "parent": "90",
+      "translation": [
+        -3.0999999999999996,
+        1.3,
+        -2.3
+      ],
+      "scaling": [
+        0.035,
+        1.3,
+        0.035
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "124": {
+      "name": "RackPost",
+      "parent": "90",
+      "translation": [
+        -1.7,
+        1.3,
+        -3.6
+      ],
+      "scaling": [
+        0.035,
+        1.3,
+        0.035
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "125": {
+      "name": "RackPost",
+      "parent": "90",
+      "translation": [
+        -1.7,
+        1.3,
+        -2.3
+      ],
+      "scaling": [
+        0.035,
+        1.3,
+        0.035
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "126": {
+      "name": "RackShelf",
+      "parent": "90",
+      "translation": [
+        -2.4,
+        0.15,
+        -2.95
+      ],
+      "scaling": [
+        0.8,
+        0.035,
+        0.7
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "127": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        -2.83,
+        0.44999999999999996,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "128": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        -1.97,
+        0.44999999999999996,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "129": {
+      "name": "RackShelf",
+      "parent": "90",
+      "translation": [
+        -2.4,
+        1.1,
+        -2.95
+      ],
+      "scaling": [
+        0.8,
+        0.035,
+        0.7
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "130": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        -2.83,
+        1.4000000000000001,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "131": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        -1.97,
+        1.4000000000000001,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "132": {
+      "name": "RackShelf",
+      "parent": "90",
+      "translation": [
+        -2.4,
+        2.1,
+        -2.95
+      ],
+      "scaling": [
+        0.8,
+        0.035,
+        0.7
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "133": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        -2.83,
+        2.4,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "134": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        -1.97,
+        2.4,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "135": {
+      "name": "RackPost",
+      "parent": "90",
+      "translation": [
+        1.7,
+        1.3,
+        -3.6
+      ],
+      "scaling": [
+        0.035,
+        1.3,
+        0.035
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "136": {
+      "name": "RackPost",
+      "parent": "90",
+      "translation": [
+        1.7,
+        1.3,
+        -2.3
+      ],
+      "scaling": [
+        0.035,
+        1.3,
+        0.035
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "137": {
+      "name": "RackPost",
+      "parent": "90",
+      "translation": [
+        3.0999999999999996,
+        1.3,
+        -3.6
+      ],
+      "scaling": [
+        0.035,
+        1.3,
+        0.035
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "138": {
+      "name": "RackPost",
+      "parent": "90",
+      "translation": [
+        3.0999999999999996,
+        1.3,
+        -2.3
+      ],
+      "scaling": [
+        0.035,
+        1.3,
+        0.035
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "139": {
+      "name": "RackShelf",
+      "parent": "90",
+      "translation": [
+        2.4,
+        0.15,
+        -2.95
+      ],
+      "scaling": [
+        0.8,
+        0.035,
+        0.7
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "140": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        1.97,
+        0.44999999999999996,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "141": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        2.83,
+        0.44999999999999996,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "142": {
+      "name": "RackShelf",
+      "parent": "90",
+      "translation": [
+        2.4,
+        1.1,
+        -2.95
+      ],
+      "scaling": [
+        0.8,
+        0.035,
+        0.7
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "143": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        1.97,
+        1.4000000000000001,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "144": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        2.83,
+        1.4000000000000001,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "145": {
+      "name": "RackShelf",
+      "parent": "90",
+      "translation": [
+        2.4,
+        2.1,
+        -2.95
+      ],
+      "scaling": [
+        0.8,
+        0.035,
+        0.7
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "146": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        1.97,
+        2.4,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "147": {
+      "name": "RackCarton",
+      "parent": "90",
+      "translation": [
+        2.83,
+        2.4,
+        -2.95
+      ],
+      "scaling": [
+        0.32,
+        0.26,
+        0.4
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "148": {
+      "name": "Pallet",
+      "parent": "90",
+      "translation": [
+        0,
+        0.09,
+        -1.4
+      ],
+      "scaling": [
+        1.15,
+        0.09,
+        0.73
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "149": {
+      "name": "PalletSlat",
+      "parent": "90",
+      "translation": [
+        -0.8,
+        0.22,
+        -1.4
+      ],
+      "scaling": [
+        0.16,
+        0.055,
+        0.74
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "103"
+          }
+        }
+      ]
+    },
+    "150": {
+      "name": "PalletSlat",
+      "parent": "90",
+      "translation": [
+        -0.4,
+        0.22,
+        -1.4
+      ],
+      "scaling": [
+        0.16,
+        0.055,
+        0.74
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "103"
+          }
+        }
+      ]
+    },
+    "151": {
+      "name": "PalletSlat",
+      "parent": "90",
+      "translation": [
+        0,
+        0.22,
+        -1.4
+      ],
+      "scaling": [
+        0.16,
+        0.055,
+        0.74
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "103"
+          }
+        }
+      ]
+    },
+    "152": {
+      "name": "PalletSlat",
+      "parent": "90",
+      "translation": [
+        0.4,
+        0.22,
+        -1.4
+      ],
+      "scaling": [
+        0.16,
+        0.055,
+        0.74
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "103"
+          }
+        }
+      ]
+    },
+    "153": {
+      "name": "PalletSlat",
+      "parent": "90",
+      "translation": [
+        0.8,
+        0.22,
+        -1.4
+      ],
+      "scaling": [
+        0.16,
+        0.055,
+        0.74
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "103"
+          }
+        }
+      ]
+    },
+    "154": {
+      "name": "VL-2048",
+      "parent": "90",
+      "translation": [
+        -0.5,
+        0.73,
+        -1.4
+      ],
+      "scaling": [
+        0.53,
+        0.45,
+        0.52
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "155": {
+      "name": "VL-2048-Tape",
+      "parent": "90",
+      "translation": [
+        -0.5,
+        0.73,
+        -0.8739999999999999
+      ],
+      "scaling": [
+        0.065,
+        0.45,
+        0.008
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "103"
+          }
+        }
+      ]
+    },
+    "156": {
+      "name": "VL-2048-Label",
+      "parent": "90",
+      "translation": [
+        -0.73,
+        0.79,
+        -0.8619999999999999
+      ],
+      "scaling": [
+        0.17,
+        0.1,
+        0.008
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "104"
+          }
+        }
+      ]
+    },
+    "157": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.8400000000000001,
+        0.79,
+        -0.8509999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "158": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.8140000000000001,
+        0.79,
+        -0.8509999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "159": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.788,
+        0.79,
+        -0.8509999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "160": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.7620000000000001,
+        0.79,
+        -0.8509999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "161": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.7360000000000001,
+        0.79,
+        -0.8509999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "162": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.7100000000000001,
+        0.79,
+        -0.8509999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "163": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.684,
+        0.79,
+        -0.8509999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "164": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.6580000000000001,
+        0.79,
+        -0.8509999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "165": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.6320000000000001,
+        0.79,
+        -0.8509999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "166": {
+      "name": "VL-2051",
+      "parent": "90",
+      "translation": [
+        0.64,
+        0.61,
+        -1.4
+      ],
+      "scaling": [
+        0.47,
+        0.34,
+        0.5
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "167": {
+      "name": "VL-2051-Tape",
+      "parent": "90",
+      "translation": [
+        0.64,
+        0.61,
+        -0.8939999999999999
+      ],
+      "scaling": [
+        0.065,
+        0.34,
+        0.008
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "103"
+          }
+        }
+      ]
+    },
+    "168": {
+      "name": "VL-2051-Label",
+      "parent": "90",
+      "translation": [
+        0.41000000000000003,
+        0.6699999999999999,
+        -0.8819999999999999
+      ],
+      "scaling": [
+        0.17,
+        0.1,
+        0.008
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "104"
+          }
+        }
+      ]
+    },
+    "169": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        0.3,
+        0.6699999999999999,
+        -0.8709999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "170": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        0.326,
+        0.6699999999999999,
+        -0.8709999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "171": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        0.352,
+        0.6699999999999999,
+        -0.8709999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "172": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        0.378,
+        0.6699999999999999,
+        -0.8709999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "173": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        0.40399999999999997,
+        0.6699999999999999,
+        -0.8709999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "174": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        0.43,
+        0.6699999999999999,
+        -0.8709999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "175": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        0.45599999999999996,
+        0.6699999999999999,
+        -0.8709999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "176": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        0.482,
+        0.6699999999999999,
+        -0.8709999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "177": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        0.508,
+        0.6699999999999999,
+        -0.8709999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "178": {
+      "name": "VL-2048-Upper",
+      "parent": "90",
+      "translation": [
+        -0.47,
+        1.43,
+        -1.4
+      ],
+      "scaling": [
+        0.42,
+        0.25,
+        0.46
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "102"
+          }
+        }
+      ]
+    },
+    "179": {
+      "name": "VL-2048-Upper-Tape",
+      "parent": "90",
+      "translation": [
+        -0.47,
+        1.43,
+        -0.9339999999999999
+      ],
+      "scaling": [
+        0.065,
+        0.25,
+        0.008
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "103"
+          }
+        }
+      ]
+    },
+    "180": {
+      "name": "VL-2048-Upper-Label",
+      "parent": "90",
+      "translation": [
+        -0.7,
+        1.49,
+        -0.9219999999999999
+      ],
+      "scaling": [
+        0.17,
+        0.1,
+        0.008
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "104"
+          }
+        }
+      ]
+    },
+    "181": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.81,
+        1.49,
+        -0.9109999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "182": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.784,
+        1.49,
+        -0.9109999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "183": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.758,
+        1.49,
+        -0.9109999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "184": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.7320000000000001,
+        1.49,
+        -0.9109999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "185": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.7060000000000001,
+        1.49,
+        -0.9109999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "186": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.68,
+        1.49,
+        -0.9109999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "187": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.654,
+        1.49,
+        -0.9109999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "188": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.6280000000000001,
+        1.49,
+        -0.9109999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "189": {
+      "name": "Barcode",
+      "parent": "90",
+      "translation": [
+        -0.6020000000000001,
+        1.49,
+        -0.9109999999999999
+      ],
+      "scaling": [
+        0.006,
+        0.065,
+        0.004
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p1",
+            "material": "101"
+          }
+        }
+      ]
+    },
+    "190": {
+      "name": "AttentionMarker",
+      "parent": "90",
+      "translation": [
+        0.7,
+        1,
+        -0.87
+      ],
+      "scaling": [
+        0.07,
+        0.07,
+        0.07
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p2",
+            "material": "107"
+          }
+        }
+      ]
+    },
+    "191": {
+      "name": "SharedVideoPlane",
+      "parent": "90",
+      "translation": [
+        0,
+        1.3,
+        0.4
+      ],
+      "scaling": [
+        1.6,
+        0.9,
+        1
+      ],
+      "components": [
+        {
+          "type": "mesh",
+          "mesh": {
+            "mesh": "p0",
+            "material": "108"
+          }
+        }
+      ]
+    }
+  },
+  "meshes": {
+    "p0": {
+      "link": {
+        "name": "PrimitivePlane",
+        "file": "default"
+      }
+    },
+    "p1": {
+      "link": {
+        "name": "PrimitiveCube",
+        "file": "default"
+      }
+    },
+    "p2": {
+      "link": {
+        "name": "PrimitiveSphere",
+        "file": "default"
+      }
+    },
+    "p3": {
+      "link": {
+        "name": "PrimitiveCone",
+        "file": "default"
+      }
+    },
+    "p4": {
+      "link": {
+        "name": "PrimitiveCylinder",
+        "file": "default"
+      }
+    },
+    "p5": {
+      "link": {
+        "name": "PrimitiveCircle",
+        "file": "default"
+      }
+    }
+  },
+  "materials": {
+    "DefaultFontMaterial": {
+      "link": {
+        "name": "DefaultFontMaterial",
+        "file": "default"
+      }
+    },
+    "20": {
+      "name": "White",
+      "Phong": {
+        "specularColor": [
+          9.999899930335232e-07,
+          9.99993744699168e-07,
+          9.999999974752427e-07,
+          1.0
+        ],
+        "shininess": 1,
+        "emissiveColor": [
+          0.2,
+          0.2,
+          0.2,
+          1.0
+        ],
+        "ambientColor": [
+          0.05,
+          0.05,
+          0.05,
+          1.0
+        ],
+        "diffuseColor": [
+          0.5,
+          0.5,
+          0.5,
+          1.0
+        ]
+      },
+      "pipeline": "37"
+    },
+    "22": {
+      "name": "Pink",
+      "Phong": {
+        "diffuseColor": [
+          0.9098039,
+          0.0,
+          0.5411764,
+          1.0
+        ],
+        "specularColor": [
+          9.999899930335232e-07,
+          9.999911299019004e-07,
+          9.999999974752427e-07,
+          1.0
+        ],
+        "shininess": 10,
+        "ambientColor": [
+          0.05,
+          0.05,
+          0.05,
+          1.0
+        ],
+        "emissiveColor": [
+          0.1921568,
+          0.0,
+          0.1310161,
+          1.0
+        ]
+      },
+      "pipeline": "37"
+    },
+    "25": {
+      "name": "Yellow",
+      "Phong": {
+        "diffuseColor": [
+          1.0,
+          0.8039215,
+          0.0,
+          1.0
+        ],
+        "specularColor": [
+          9.999999974752427e-07,
+          9.999899930335232e-07,
+          9.999899930335232e-07,
+          1.0
+        ],
+        "ambientColor": [
+          0.05,
+          0.05,
+          0.05,
+          1.0
+        ],
+        "emissiveColor": [
+          0.2588235,
+          0.2080737,
+          0.0,
+          1.0
+        ]
+      },
+      "pipeline": "37"
+    },
+    "26": {
+      "name": "Green",
+      "Phong": {
+        "diffuseColor": [
+          0.1529411,
+          0.7882353,
+          0.5411764,
+          1.0
+        ],
+        "specularColor": [
+          9.999999974752427e-07,
+          9.999899930335232e-07,
+          9.999899930335232e-07,
+          1.0
+        ],
+        "ambientColor": [
+          0.05,
+          0.05,
+          0.05,
+          1.0
+        ],
+        "emissiveColor": [
+          0.0,
+          0.1686274,
+          0.10305,
+          1.0
+        ]
+      },
+      "pipeline": "37"
+    },
+    "89": {
+      "name": "Sky",
+      "Phong": {
+        "specularColor": [
+          9.999899930335232e-07,
+          9.99993744699168e-07,
+          9.999999974752427e-07,
+          1.0
+        ],
+        "shininess": 1,
+        "emissiveColor": [
+          0.2,
+          0.2,
+          0.2,
+          1.0
+        ],
+        "ambientColor": [
+          0.05,
+          0.05,
+          0.05,
+          1.0
+        ],
+        "diffuseColor": [
+          0.5,
+          0.5,
+          0.5,
+          1.0
+        ]
+      },
+      "pipeline": "54",
+      "Sky": {
+        "colorStop3": [
+          0.57584,
+          0.5798863,
+          0.5803921,
+          1.0
+        ],
+        "colorStop2": [
+          0.2023221,
+          0.2037438,
+          0.2039215,
+          1.0
+        ],
+        "colorStop1": [
+          0.2023221,
+          0.2037438,
+          0.2039215,
+          1.0
+        ],
+        "colorStop0": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    },
+    "100": {
+      "name": "Floor",
+      "pipeline": "37",
+      "Phong": {
+        "diffuseColor": [
+          0.31,
+          0.4,
+          0.35,
+          1
+        ],
+        "ambientColor": [
+          0.1,
+          0.1,
+          0.1,
+          1
+        ],
+        "emissiveColor": [
+          0.2015,
+          0.26,
+          0.22749999999999998,
+          1
+        ],
+        "specularColor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "shininess": 1
+      }
+    },
+    "101": {
+      "name": "Rack",
+      "pipeline": "37",
+      "Phong": {
+        "diffuseColor": [
+          0.13,
+          0.27,
+          0.24,
+          1
+        ],
+        "ambientColor": [
+          0.1,
+          0.1,
+          0.1,
+          1
+        ],
+        "emissiveColor": [
+          0.0845,
+          0.17550000000000002,
+          0.156,
+          1
+        ],
+        "specularColor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "shininess": 1
+      }
+    },
+    "102": {
+      "name": "Cardboard",
+      "pipeline": "37",
+      "Phong": {
+        "diffuseColor": [
+          0.66,
+          0.49,
+          0.29,
+          1
+        ],
+        "ambientColor": [
+          0.1,
+          0.1,
+          0.1,
+          1
+        ],
+        "emissiveColor": [
+          0.42900000000000005,
+          0.3185,
+          0.1885,
+          1
+        ],
+        "specularColor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "shininess": 1
+      }
+    },
+    "103": {
+      "name": "Tape",
+      "pipeline": "37",
+      "Phong": {
+        "diffuseColor": [
+          0.81,
+          0.71,
+          0.5,
+          1
+        ],
+        "ambientColor": [
+          0.1,
+          0.1,
+          0.1,
+          1
+        ],
+        "emissiveColor": [
+          0.5265000000000001,
+          0.46149999999999997,
+          0.325,
+          1
+        ],
+        "specularColor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "shininess": 1
+      }
+    },
+    "104": {
+      "name": "Labels",
+      "pipeline": "37",
+      "Phong": {
+        "diffuseColor": [
+          0.91,
+          0.94,
+          0.85,
+          1
+        ],
+        "ambientColor": [
+          0.1,
+          0.1,
+          0.1,
+          1
+        ],
+        "emissiveColor": [
+          0.5915,
+          0.611,
+          0.5525,
+          1
+        ],
+        "specularColor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "shininess": 1
+      }
+    },
+    "105": {
+      "name": "Marker",
+      "pipeline": "37",
+      "Phong": {
+        "diffuseColor": [
+          0.38,
+          0.83,
+          0.62,
+          1
+        ],
+        "ambientColor": [
+          0.1,
+          0.1,
+          0.1,
+          1
+        ],
+        "emissiveColor": [
+          0.24700000000000003,
+          0.5395,
+          0.403,
+          1
+        ],
+        "specularColor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "shininess": 1
+      }
+    },
+    "106": {
+      "name": "Wall",
+      "pipeline": "37",
+      "Phong": {
+        "diffuseColor": [
+          0.61,
+          0.69,
+          0.57,
+          1
+        ],
+        "ambientColor": [
+          0.1,
+          0.1,
+          0.1,
+          1
+        ],
+        "emissiveColor": [
+          0.3965,
+          0.44849999999999995,
+          0.3705,
+          1
+        ],
+        "specularColor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "shininess": 1
+      }
+    },
+    "107": {
+      "name": "Warning",
+      "pipeline": "37",
+      "Phong": {
+        "diffuseColor": [
+          0.94,
+          0.67,
+          0.3,
+          1
+        ],
+        "ambientColor": [
+          0.1,
+          0.1,
+          0.1,
+          1
+        ],
+        "emissiveColor": [
+          0.611,
+          0.43550000000000005,
+          0.195,
+          1
+        ],
+        "specularColor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "shininess": 1
+      }
+    },
+    "108": {
+      "name": "SharedVideoMaterial",
+      "pipeline": "35",
+      "Flat": {
+        "color": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "shaders": {
+    "1": {
+      "link": {
+        "name": "DistanceFieldVector Textured.frag",
+        "file": "default"
+      }
+    },
+    "2": {
+      "link": {
+        "name": "Flat.frag",
+        "file": "default"
+      }
+    },
+    "3": {
+      "link": {
+        "name": "Flat Textured.frag",
+        "file": "default"
+      }
+    },
+    "4": {
+      "link": {
+        "name": "MeshVisualizer.frag",
+        "file": "default"
+      }
+    },
+    "5": {
+      "link": {
+        "name": "Phong.frag",
+        "file": "default"
+      }
+    },
+    "6": {
+      "link": {
+        "name": "Phong Textured.frag",
+        "file": "default"
+      }
+    },
+    "28": {
+      "link": {
+        "name": "Dynamic.vert",
+        "file": "default"
+      }
+    },
+    "29": {
+      "link": {
+        "name": "Particle Textured.frag",
+        "file": "default"
+      }
+    },
+    "30": {
+      "link": {
+        "name": "Skinning.vert",
+        "file": "default"
+      }
+    },
+    "31": {
+      "link": {
+        "name": "Static.frag",
+        "file": "default"
+      }
+    },
+    "32": {
+      "link": {
+        "name": "DistanceFieldVector.frag",
+        "file": "default"
+      }
+    },
+    "39": {
+      "link": {
+        "name": "Particle.frag",
+        "file": "default"
+      }
+    },
+    "42": {
+      "link": {
+        "name": "Background.frag",
+        "file": "default"
+      }
+    },
+    "43": {
+      "link": {
+        "name": "Depth.frag",
+        "file": "default"
+      }
+    },
+    "45": {
+      "link": {
+        "name": "FullScreenTriangle.vert",
+        "file": "default"
+      }
+    },
+    "46": {
+      "link": {
+        "name": "Physical.frag",
+        "file": "default"
+      }
+    },
+    "49": {
+      "link": {
+        "name": "Sky.frag",
+        "file": "default"
+      }
+    },
+    "50": {
+      "link": {
+        "name": "Text.frag",
+        "file": "default"
+      }
+    },
+    "52": {
+      "link": {
+        "name": "Text.vert",
+        "file": "default"
+      }
+    },
+    "53": {
+      "link": {
+        "name": "TileFeedback.frag",
+        "file": "default"
+      }
+    },
+    "56": {
+      "link": {
+        "name": "lib\\Color.glsl",
+        "file": "default"
+      }
+    },
+    "57": {
+      "link": {
+        "name": "lib\\Compatibility.frag",
+        "file": "default"
+      }
+    },
+    "58": {
+      "link": {
+        "name": "lib\\CoordinateSystems.glsl",
+        "file": "default"
+      }
+    },
+    "59": {
+      "link": {
+        "name": "lib\\GI.frag",
+        "file": "default"
+      }
+    },
+    "60": {
+      "link": {
+        "name": "lib\\Inputs.frag",
+        "file": "default"
+      }
+    },
+    "61": {
+      "link": {
+        "name": "lib\\Lights.frag",
+        "file": "default"
+      }
+    },
+    "62": {
+      "link": {
+        "name": "lib\\Materials.frag",
+        "file": "default"
+      }
+    },
+    "63": {
+      "link": {
+        "name": "lib\\Math.glsl",
+        "file": "default"
+      }
+    },
+    "64": {
+      "link": {
+        "name": "lib\\MorphTargets.glsl",
+        "file": "default"
+      }
+    },
+    "65": {
+      "link": {
+        "name": "lib\\Packing.frag",
+        "file": "default"
+      }
+    },
+    "68": {
+      "link": {
+        "name": "lib\\PhysicalBSDF.glsl",
+        "file": "default"
+      }
+    },
+    "69": {
+      "link": {
+        "name": "lib\\Quaternion.glsl",
+        "file": "default"
+      }
+    },
+    "70": {
+      "link": {
+        "name": "lib\\Slug.frag",
+        "file": "default"
+      }
+    },
+    "71": {
+      "link": {
+        "name": "lib\\Slug.vert",
+        "file": "default"
+      }
+    },
+    "72": {
+      "link": {
+        "name": "lib\\Surface.frag",
+        "file": "default"
+      }
+    },
+    "73": {
+      "link": {
+        "name": "lib\\Textures.frag",
+        "file": "default"
+      }
+    },
+    "75": {
+      "link": {
+        "name": "lib\\Uniforms.glsl",
+        "file": "default"
+      }
+    },
+    "86": {
+      "link": {
+        "name": "AtmosphericSky.frag",
+        "file": "default"
+      }
+    },
+    "87": {
+      "link": {
+        "name": "lib\\SkyProcedural.glsl",
+        "file": "default"
+      }
+    }
+  },
+  "settings": {
+    "project": {
+      "name": "VisionLink",
+      "version": [
+        1,
+        3,
+        0,
+        1
+      ]
+    },
+    "vr": {
+      "leftEyeObject": "78",
+      "rightEyeObject": "79"
+    },
+    "scripting": {
+      "application": {
+        "output": "VisionLink-app.js",
+        "bundling": "esbuild"
+      },
+      "components": {
+        "output": "VisionLink-bundle.js"
+      },
+      "libraryPaths": [
+        "/js/lib/"
+      ],
+      "sourcePaths": [
+        "js"
+      ]
+    },
+    "rendering": {
+      "clearColor": [0, 0, 0, 0],
+      "hdr": {
+        "exposure": 1.1
+      },
+      "sky": {
+        "enabled": false,
+        "material": "89"
+      }
+    },
+    "runtime": {
+      "viewObject": "77",
+      "clearColor": [
+        0.08,
+        0.18,
+        0.17,
+        0
+      ]
+    }
+  },
+  "animations": {},
+  "skins": {},
+  "pipelines": {
+    "33": {
+      "link": {
+        "name": "DistanceFieldVector",
+        "file": "default"
+      }
+    },
+    "34": {
+      "link": {
+        "name": "Flat Opaque",
+        "file": "default"
+      }
+    },
+    "35": {
+      "link": {
+        "name": "Flat Opaque Textured",
+        "file": "default"
+      }
+    },
+    "36": {
+      "link": {
+        "name": "MeshVisualizer",
+        "file": "default"
+      }
+    },
+    "37": {
+      "link": {
+        "name": "Phong Opaque",
+        "file": "default"
+      }
+    },
+    "38": {
+      "link": {
+        "name": "Phong Opaque Textured",
+        "file": "default"
+      }
+    },
+    "40": {
+      "link": {
+        "name": "Foliage",
+        "file": "default"
+      }
+    },
+    "41": {
+      "link": {
+        "name": "Particle",
+        "file": "default"
+      }
+    },
+    "44": {
+      "link": {
+        "name": "Depth",
+        "file": "default"
+      }
+    },
+    "47": {
+      "link": {
+        "name": "Physical Opaque",
+        "file": "default"
+      }
+    },
+    "48": {
+      "link": {
+        "name": "Physical Opaque Textured",
+        "file": "default"
+      }
+    },
+    "51": {
+      "link": {
+        "name": "Text",
+        "file": "default"
+      }
+    },
+    "54": {
+      "link": {
+        "name": "Sky",
+        "file": "default"
+      },
+      "features": {
+        "GRADIENT": true,
+        "TEXTURED": false,
+        "GRADIENT_4_STOPS": true,
+        "ENVIRONMENT_PROBE": false
+      }
+    },
+    "66": {
+      "link": {
+        "name": "Phong Normalmapped",
+        "file": "default"
+      }
+    },
+    "67": {
+      "link": {
+        "name": "Phong Lightmapped",
+        "file": "default"
+      }
+    },
+    "74": {
+      "link": {
+        "name": "TileFeedback",
+        "file": "default"
+      }
+    },
+    "88": {
+      "link": {
+        "name": "AtmosphericSky",
+        "file": "default"
+      }
+    }
+  },
+  "textures": {},
+  "images": {},
+  "fonts": {
+    "55": {
+      "link": {
+        "name": "DejaVuSans.ttf",
+        "file": "default"
+      }
+    }
+  },
+  "languages": {},
+  "files": {},
+  "morphTargets": {}
+}

@@ -17,6 +17,7 @@
     "build:wonderland": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-wonderland.ps1",
     "build:assets": "node scripts/bundle-vision.mjs",
     "prepare:models": "node scripts/fetch-vision-models.mjs",
+    "prepare:runtime": "node scripts/fetch-runtime-assets.mjs && node scripts/fetch-vision-models.mjs",
     "build:independent": "node scripts/bundle-vision.mjs && node scripts/damage-report.mjs && node scripts/build-independent.mjs",
     "start:independent": "node --env-file-if-exists=.env.independent.local standalone/local-server.mjs",
     "deploy:independent": "node node_modules/wrangler/bin/wrangler.js deploy --config standalone/wrangler.local.jsonc"

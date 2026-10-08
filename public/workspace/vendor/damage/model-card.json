@@ -1,0 +1,259 @@
+{
+  "version": "visionlink-damage-patch-v1",
+  "created": "2026-10-07",
+  "purpose": "Experimental classification of a user-centred suspected defect patch. Not whole-box inspection, damage localization, or acceptance certification.",
+  "architecture": "ImageNet MobileNetV3-small, locally trained 576→128→4 head and final three backbone blocks",
+  "input": {
+    "width": 160,
+    "height": 160,
+    "layout": "NCHW",
+    "rgb": true,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "labels": [
+    "膠帶翹起／多餘",
+    "破洞／撕裂",
+    "壓凹／變形",
+    "包膜撕裂"
+  ],
+  "threshold": 0.9,
+  "seed": 20261007,
+  "best_epoch": "adaptation-12",
+  "source": {
+    "url": "https://www.kaggle.com/datasets/ivannuke/defective-box-detection-real-vs-synthetic",
+    "author": "ivannuke",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "subset": "real only; publisher train/valid/test; square annotation-centred scope with 10% context"
+  },
+  "split_counts": {
+    "test": {
+      "膠帶翹起／多餘": 58,
+      "破洞／撕裂": 5,
+      "壓凹／變形": 31,
+      "包膜撕裂": 46
+    },
+    "valid": {
+      "膠帶翹起／多餘": 56,
+      "破洞／撕裂": 6,
+      "壓凹／變形": 11,
+      "包膜撕裂": 50
+    },
+    "train": {
+      "膠帶翹起／多餘": 469,
+      "破洞／撕裂": 55,
+      "壓凹／變形": 116,
+      "包膜撕裂": 376
+    }
+  },
+  "duplicate_audit": {
+    "method": "decoded-pixel SHA256 and 64-bit dHash Hamming distance ≤3, holdout precedence",
+    "removed_images": 8,
+    "physical_box_ids": "Not supplied by publisher; image-level holdout does not establish independent physical-box or Hong Kong field performance."
+  },
+  "validation": {
+    "accuracy": 0.8373983739837398,
+    "macro_f1": 0.8290306608793833,
+    "confusion_matrix": [
+      [
+        53,
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        6,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        6,
+        4
+      ],
+      [
+        11,
+        0,
+        1,
+        38
+      ]
+    ],
+    "per_class": [
+      {
+        "label": "膠帶翹起／多餘",
+        "n": 56,
+        "precision": 0.8153846153846154,
+        "recall": 0.9464285714285714,
+        "f1": 0.8760330578512396
+      },
+      {
+        "label": "破洞／撕裂",
+        "n": 6,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      {
+        "label": "壓凹／變形",
+        "n": 11,
+        "precision": 0.75,
+        "recall": 0.5454545454545454,
+        "f1": 0.631578947368421
+      },
+      {
+        "label": "包膜撕裂",
+        "n": 50,
+        "precision": 0.8636363636363636,
+        "recall": 0.76,
+        "f1": 0.8085106382978724
+      }
+    ]
+  },
+  "test": {
+    "accuracy": 0.7785714285714286,
+    "macro_f1": 0.8097385336619787,
+    "confusion_matrix": [
+      [
+        47,
+        0,
+        0,
+        11
+      ],
+      [
+        0,
+        4,
+        1,
+        0
+      ],
+      [
+        5,
+        0,
+        23,
+        3
+      ],
+      [
+        11,
+        0,
+        0,
+        35
+      ]
+    ],
+    "per_class": [
+      {
+        "label": "膠帶翹起／多餘",
+        "n": 58,
+        "precision": 0.746031746031746,
+        "recall": 0.8103448275862069,
+        "f1": 0.7768595041322314
+      },
+      {
+        "label": "破洞／撕裂",
+        "n": 5,
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.888888888888889
+      },
+      {
+        "label": "壓凹／變形",
+        "n": 31,
+        "precision": 0.9583333333333334,
+        "recall": 0.7419354838709677,
+        "f1": 0.8363636363636364
+      },
+      {
+        "label": "包膜撕裂",
+        "n": 46,
+        "precision": 0.7142857142857143,
+        "recall": 0.7608695652173914,
+        "f1": 0.7368421052631581
+      }
+    ],
+    "confident_coverage": 0.8214285714285714,
+    "confident_accuracy": 0.8608695652173913
+  },
+  "onnx_parity_max_abs_error": 6.389617919921875e-05,
+  "cpu_inference_median_ms": 1.124599999457132,
+  "sha256": "f8f17b0939ac3ae06b58f63a8fd7d1d323ee26336718e8df72d9d5f8db31637b",
+  "model_bytes": 4014966,
+  "limitations": [
+    "No intact class and no out-of-distribution rejection guarantee. Do not infer intact from no detection.",
+    "Small tear/puncture test class; no field acceptance calibration.",
+    "Classifies the selected region; the displayed frame is inspection scope, not a predicted damage boundary.",
+    "No private user photos used or deployed."
+  ],
+  "backbone_source": "https://pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v3_small.html",
+  "weights_license": "CC BY-SA 4.0 for the trained derivative; torchvision software BSD-3-Clause",
+  "selection": "Two candidates selected solely by validation macro F1: classifier head and up to 12 epochs adapting final three backbone blocks. Test feedback was used to fix square preprocessing, so the publisher test split is a development holdout, not an untouched certification set.",
+  "additional_evaluation": {
+    "source_subset": "Dataset_extendido_publicable/images/test (same licensed publisher archive)",
+    "images_after_duplicate_filter": 134,
+    "excluded_overlap_images": 0,
+    "patches": 137,
+    "accuracy": 0.5255474452554745,
+    "macro_f1": 0.33169197255091365,
+    "confusion_matrix": [
+      [
+        31,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        7,
+        9
+      ],
+      [
+        13,
+        0,
+        1,
+        4
+      ],
+      [
+        24,
+        0,
+        6,
+        40
+      ]
+    ],
+    "per_class": [
+      {
+        "label": "膠帶翹起／多餘",
+        "n": 31,
+        "precision": 0.44285714285714284,
+        "recall": 1.0
+      },
+      {
+        "label": "破洞／撕裂",
+        "n": 18,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      {
+        "label": "壓凹／變形",
+        "n": 18,
+        "precision": 0.07142857142857142,
+        "recall": 0.05555555555555555
+      },
+      {
+        "label": "包膜撕裂",
+        "n": 70,
+        "precision": 0.7547169811320755,
+        "recall": 0.5714285714285714
+      }
+    ],
+    "limitations": "Different images after exact/near duplicate checks; physical box identities and independently acquired Hong Kong conditions remain unknown. No parameters selected on this subset."
+  }
+}

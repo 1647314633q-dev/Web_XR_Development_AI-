@@ -1,0 +1,7 @@
+VisionLink damage patch classifier v1
+Training data: Package Defect Detection Benchmark by ivannuke
+https://www.kaggle.com/datasets/ivannuke/defective-box-detection-real-vs-synthetic
+Data and trained derivative: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
+Changes: real annotation crops, duplicate filtering, MobileNetV3 transfer features, trained classifier head.
+Backbone: torchvision MobileNetV3-small ImageNet1K_V1, torchvision BSD-3-Clause.
+Model is experimental and is not a whole-box acceptance detector.

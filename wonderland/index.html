@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>VisionLink · Wonderland Engine</title>
+ <style>
+ *{box-sizing:border-box}body{margin:0;background:#183c3b;color:#dfead8;font-family:system-ui,sans-serif;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+ canvas{width:100%;height:0;flex:1;min-height:0;display:block;touch-action:none}
+ #xr-ui{flex:none;width:100%;min-width:0;background:#123532}
+ .bar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;gap:10px;flex-wrap:wrap}
+ .bar>div{display:flex;flex-wrap:wrap;gap:4px;min-width:0}b{font-size:11px;line-height:1.6}
+ #view-mode{display:block;color:#d6d98f;font-size:13px}
+ button{border:1px solid #8aad8d55;color:#dfead8;background:#2b5b48;border-radius:6px;padding:9px 12px;font:inherit;font-size:12px;cursor:pointer}
+ button:focus-visible{outline:3px solid #b5d995}button:disabled{opacity:.55;cursor:wait}
+ #capability,#status,#tracking-status{margin:0;padding:7px 16px;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+ #reference-panel,#advanced-options{padding:8px 16px;font-size:13px;line-height:1.6}
+ #reference-summary{font-weight:700;color:#d6d98f}#reference-progress{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}#reference-progress[hidden]{display:none}
+ [data-reference]{border:1px solid #739384;padding:4px 7px;border-radius:5px}[data-reference].accepted{background:#315e45;border-color:#a8d39b}
+ #confirm-point{background:#d6d98f;color:#153b30;font-weight:700}#confirm-point:disabled{cursor:default}summary{cursor:pointer}
+ #capability{color:#d6d98f}#status{color:#bed2bf;padding-top:0}
+ #exit-ar{display:none}.xr-active #xr-ui{position:fixed;bottom:0;left:0;background:transparent;padding-bottom:env(safe-area-inset-bottom)}
+ #xr-ui:xr-overlay{background:transparent}.xr-active .bar,.xr-active #capability,.xr-active #status,.xr-active #tracking-status,.xr-active #reference-panel,.xr-active #advanced-options{background:#123532ed}
+ .xr-active #exit-ar{display:inline-block}.xr-active #ar-button,.xr-active #video-view,.xr-active #reset{display:none}
+ .xr-active button{font-size:13px;padding:12px}.xr-active #status{font-size:14px}
+ @media(max-width:500px){.bar{padding:8px}button{padding:8px;font-size:12px}#capability,#status{padding-left:8px;padding-right:8px}}
+ </style>
+</head>
+<body>
+ <canvas id="canvas" aria-label="Wonderland Engine 3D 預覽；進入 AR 後顯示真實環境的空間標記"></canvas>
+ <div id="xr-ui">
+  <div class="bar">
+   <b>◈ WONDERLAND ENGINE <span id="view-mode">3D 預覽 · AR 尚未啟動</span></b>
+   <div>
+    <button id="video-view">鏡頭平面</button><button id="reset">重設視角</button>
+    <button id="confirm-point" disabled>設定工作區</button><button id="add-pin" disabled>＋ 新增空間標記</button>
+    <button id="calibrate">重設工作區</button><button id="clear-space">清除標記</button><button id="exit-ar">離開 AR</button>
+    <button id="ar-button" disabled>進入 AR ↗</button>
+   </div>
+  </div>
+  <p id="capability">正在檢查裝置的 AR 支援…</p>
+  <div id="reference-panel"><div id="reference-summary" role="status">進入 AR 後，對準桌面設定工作區</div></div>
+  <p id="tracking-status">AR 尚未啟動</p>
+  <div id="status" role="status">正在載入 Wonderland Engine…</div>
+  <details id="advanced-options"><summary>進階：雙端三點對齊</summary>
+   <p>簡易設定只需一次確認，方向依手機目前面向建立。兩地要對齊相同布局時，可各自選原點 O、右方 X、前方 Z；X／Z 距原點約 50 公分並成直角。每點按確認按鈕，錯誤時保留已選點。</p>
+   <button id="advanced-calibration">使用三點對齊</button><button id="simple-calibration">返回簡易設定</button>
+   <div id="reference-progress" hidden><span data-reference="0">○ 原點 O</span><span data-reference="1">○ 右方 X</span><span data-reference="2">○ 前方 Z</span></div>
+  </details>
+ </div>
+ <script type="importmap">{"imports":{"@wonderlandengine/api":"./vendor/index.js","@wonderlandengine/api/decorators.js":"./vendor/index.js"}}</script>
+ <script type="module" src="VisionLink-app.js"></script>
+</body>
+</html>
