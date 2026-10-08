@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#123c3d"><title>登入 · VisionLink</title><link rel="stylesheet" href="/workspace/styles.css"><link rel="stylesheet" href="/workspace/account.css"></head>
+<body class="login-page"><main class="login-card"><a class="login-brand" href="/">◈ VISIONLINK</a><div class="eyebrow">香港 · 遠程貨品驗收</div><h1 id="loginTitle">登入你的工作空間</h1><p id="loginDescription">發起方使用建立帳戶時保存的個人存取金鑰登入。受邀夥伴直接開啟完整房間連結，無需登入。</p><form id="loginForm">
+<div id="nameRow" hidden><label for="displayName">顯示名稱</label><input id="displayName" maxlength="40" autocomplete="name" placeholder="例如 現場協作員"></div>
+<div id="keyRow"><label for="accessKey" id="keyLabel">存取金鑰</label><input id="accessKey" type="password" autocomplete="off" spellcheck="false" placeholder="貼上你的存取金鑰"></div>
+<button class="primary full" id="loginSubmit">登入</button></form><button id="switchAuth" class="secondary full" type="button" hidden>首次使用？免費建立帳戶</button><p id="loginStatus" role="status"></p>
+<section id="newKey" hidden><h2>保存你的存取金鑰</h2><p>這個金鑰只會顯示一次。重新登入時需要它，請保存在你自己的安全位置。</p><label for="createdKey">你的存取金鑰</label><input id="createdKey" readonly type="password"><button id="copyKey" class="secondary full">複製金鑰</button><button id="downloadKey" class="secondary full">下載金鑰備份</button><button id="continueLogin" class="primary full">已保存，進入工作空間</button></section>
+<p class="login-footer">影像辨識在本機執行。房間邀請只授予本次協作權限；私人驗收紀錄與帳戶管理需要登入。</p></main><script type="module" src="/workspace/login.js"></script></body></html>

@@ -1,0 +1,20 @@
+{
+  "name": "visionlink-hk",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-07",
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {"PUBLIC_REGISTRATION": "true"},
+  "assets": {
+    "directory": "../artifacts/independent/assets",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*", "/health"]
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "visionlink-hk",
+    "database_id": "REPLACE_WITH_CREATED_DATABASE_ID",
+    "migrations_dir": "../artifacts/independent/migrations"
+  }],
+  "observability": {"enabled": false}
+}

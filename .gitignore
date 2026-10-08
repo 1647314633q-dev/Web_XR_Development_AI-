@@ -17,3 +17,18 @@ dist/
 .next/
 standalone/wrangler.local.jsonc
 .dev.vars*
+
+# Private credentials, local databases and deployment state.
+*.sqlite*
+*.db
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials*.json
+VisionLink-*.txt
+.aws/
+.codex/
+.agents/
+.openai/
+standalone/wrangler.*.local.*
