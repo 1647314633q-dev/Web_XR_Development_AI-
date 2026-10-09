@@ -29,6 +29,7 @@ ${Object.entries(security).map(([name, value]) => `  ${name}: ${value}`).join('\
 await mkdir(path.join(target, 'migrations'), {recursive: true});
 await cp('drizzle/0000_fearless_human_torch.sql', path.join(target, 'migrations/0001_workspace.sql'));
 await cp('standalone/auth-schema.sql', path.join(target, 'migrations/0002_independent_auth.sql'));
+await cp('drizzle/0001_catalog.sql', path.join(target, 'migrations/0003_catalog.sql'));
 const manifest = JSON.parse(await readFile('public/workspace/vendor/mediapipe/models/manifest.json', 'utf8'));
 for (const [filename, info] of Object.entries(manifest)) {
   const file = await readFile(path.join(workspace, 'vendor/mediapipe/models', filename));

@@ -1,7 +1,7 @@
-// Intentionally empty by default.
-// Add Drizzle tables here when the site actually needs a database.
-// See examples/d1/db/schema.ts for an opt-in example.
 import { sqliteTable, text, integer, index } from 'drizzle-orm/sqlite-core';
+export const catalogs = sqliteTable('catalogs', {
+ ownerId:text('owner_id').primaryKey(), payload:text('payload').notNull(), revision:integer('revision').notNull(), updatedAt:integer('updated_at').notNull()
+});
 export const rooms = sqliteTable('rooms', {
  code:text('code').primaryKey(), ownerId:text('owner_id').notNull(), inviteHash:text('invite_hash').notNull(), hostHash:text('host_hash').notNull(), guestHash:text('guest_hash'),
  createdAt:integer('created_at').notNull(), expiresAt:integer('expires_at').notNull(), hostSeen:integer('host_seen').notNull().default(0), guestSeen:integer('guest_seen').notNull().default(0), closed:integer('closed').notNull().default(0)
