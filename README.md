@@ -30,6 +30,35 @@
 
 「練習與備份」內仍提供 4 筆**虛構資料**，與正式帳戶資料分開。Motor A／Valve 03 名稱來自條碼對應資料表，不代表 AI 能辨識馬達型號。Excel `.xlsx` 請複製儲存格貼上或另存 CSV UTF-8；不直接解析活頁簿。可下載 CSV 日常交接，JSON 用於完整備份。
 
+## 系統架構
+
+```text
+                     VisionLink
+                        │
+            ┌───────────┴───────────┐
+            │                       │
+       現場裝置                  遠端夥伴
+     Android / Tablet          PC / Phone
+            │                       │
+            └────── WebRTC ─────────┘
+                   │       │
+              Video/Audio  Data
+                           │
+                  ┌────────┼────────┐
+                  │        │        │
+                 AI      標記      AR
+              MediaPipe  Annotation WebXR
+              ONNX        │        │
+                  └────────┴────────┘
+                           │
+                    Cloudflare Worker
+                           │
+                    ┌──────┴──────┐
+                    │             │
+                  Room           D1
+                Signaling      Records
+
+
 ## 線上使用
 
 正式部署版本：
