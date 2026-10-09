@@ -59,7 +59,7 @@ try{
  };
  const markers=new Map();
  let yaw=0,lastX=null,miniature=false,hitSource=null,hitPose=null,reticle=null;
- let frameId=crypto.randomUUID(),calibration=null,reference=null,viewerPose=null,capture=null,poseLast=0,peerLast=0,peerMarker=null,captureReported=false;
+ let frameId=crypto.randomUUID(),calibration=null,reference=null,viewerPose=null,capture=null,poseLast=0,peerLast=0,peerMarker=null,captureReported=false,captureErrors=0;
  const referenceSelection=new ReferenceCalibration(),referenceMarkers=[];
  const confirmPoint=document.getElementById('confirm-point'),trackingStatus=document.getElementById('tracking-status');
  let referenceUIKey='';
@@ -118,11 +118,11 @@ try{
    updateInstructionUI();instructions.update(calibration,pose,true);
    if(peerMarker&&performance.now()-peerLast>2000)peerMarker.active=false;
    const view=pose.views[0];if(calibration&&performance.now()-poseLast>150){poseLast=performance.now();const t=pose.transform,position=toShared(calibration,[t.position.x,t.position.y,t.position.z]),m=t.matrix,forward=directionToShared(calibration,[-m[8],-m[9],-m[10]]);post({type:'spatial-pose',frame:frameId,position,forward});}
-   if(capture&&view){try{const points=calibration?[...spatialPins.values()].map(pin=>{const screen=projectPoint(fromShared(calibration,pin.position),view.transform.inverse.matrix,view.projectionMatrix);return screen?{...screen,number:pin.number}:null;}).filter(Boolean):[];
+   if(capture&&view&&capture.ready(view)){try{const points=calibration?[...spatialPins.values()].map(pin=>{const screen=projectPoint(fromShared(calibration,pin.position),view.transform.inverse.matrix,view.projectionMatrix);return screen?{...screen,number:pin.number}:null;}).filter(Boolean):[];
      const projectedInstructions=instructions.projected(calibration,view);
-     const available=capture.capture(xr.frame,view,points,(bitmap,points)=>{if(!captureReported)captureReported=true;parent.postMessage({type:'xr-camera-frame',bitmap,points,annotations:projectedInstructions},location.origin,[bitmap]);});
-     if(!available&&!view.camera&&!captureReported){captureReported=true;post({type:'xr-share-status',active:true,supported:false});capability.textContent='AR 空間標記可使用；此裝置未提供 AR 鏡頭共享，連線時會返回現場鏡頭，保留遠端畫面指令。';}
-    }catch(e){capture.destroy();capture=null;post({type:'xr-share-status',active:true,supported:false});announce('AR 鏡頭共享無法啟動：'+e.message);}}
+     const direct=typeof parent.visionLinkXR?.frame==='function';
+     capture.capture(xr.frame,view,points,(image,points)=>{captureReported=true;captureErrors=0;if(direct)parent.visionLinkXR.frame(image,points,projectedInstructions);else parent.postMessage({type:'xr-camera-frame',bitmap:image,points,annotations:projectedInstructions},location.origin,[image]);},{imageData:direct});
+    }catch(e){captureErrors++;if(captureErrors===1){console.warn('AR camera copy will retry',e);post({type:'xr-share-status',active:true,supported:false,reason:'capture-error'});}/* A transient copy failure must not permanently disable capture. */}}
   }
  }
  function onReferenceReset(){invalidate();}
@@ -140,6 +140,7 @@ try{
   if(data?.type==='annotation-remove'&&typeof data.id==='string'){instructions.remove(data.id);if(pendingInstruction?.id===data.id){pendingInstruction=null;updateInstructionUI();}}
   if(data?.type==='annotation-tool'&&['arrow','circle','line','label'].includes(data.kind)&&typeof data.text==='string'){arTool.value=data.kind;arText.value=data.text.slice(0,120);stroke=[];strokeNormal=null;updateInstructionUI();}
   if(data?.type==='leave-ar')engine.xr?.session.end();
+  if(data?.type==='retry-ar-share'&&engine.xr&&capture){capture.destroy();captureReported=false;captureErrors=0;}
   if(data?.type==='spatial-frame'&&typeof data.frame==='string'&&/^[a-zA-Z0-9-]{8,80}$/.test(data.frame)&&frameId!==data.frame){frameId=data.frame;instructions.clear();pendingInstruction=null;for(const obj of physicalMarkers.values())obj.destroy();physicalMarkers.clear();spatialPins.clear();invalidate('房間已更新；進入 AR 後設定工作區。');}
   if(data?.type==='spatial-pin'&&validSpatialPin(data.pin,frameId)&&spatialPins.size<100&&!spatialPins.has(data.pin.id)){spatialPins.set(data.pin.id,data.pin);renderSpatial(data.pin);}
   if(data?.type==='spatial-clear'){for(const obj of physicalMarkers.values())obj.destroy();physicalMarkers.clear();spatialPins.clear();}
@@ -163,8 +164,9 @@ try{
  document.getElementById('xr-ui').addEventListener('beforexrselect',e=>{if(e.target.closest('button,input,select,label,summary,#reference-panel,#advanced-options,#capability,#tracking-status,#status'))e.preventDefault();});
  document.getElementById('exit-ar').onclick=()=>engine.xr?.session.end();
  engine.onXRSessionStart.add(async(session,mode)=>{
-  if(mode!=='immersive-ar')return;miniature=true;hitPose=null;viewerPose=null;captureReported=false;referenceSelection.mode='simple';preview.enter();player.setPositionLocal([0,0,0]);document.body.classList.add('xr-active');viewMode.textContent='AR 已啟動 · 真實環境';capability.textContent='對準桌面 → 設定工作區 → 新增空間標記。移動手機，查看標記是否留在原位。';reticle=template.clone(null);reticle.setScalingLocal([.018,.018,.018]);reticle.active=false;invalidate('請對準有紋理、光線充足的桌面，等待黃色球後設定工作區。');post({type:'xr-share-status',active:true,supported:false,pending:true});
-  try{if(typeof XRWebGLBinding!=='undefined'&&XRWebGLBinding.prototype.getCameraImage)capture=new XRCameraCapture(session,canvas);}catch{/* Optional camera-access was not granted. */}
+  if(mode!=='immersive-ar')return;miniature=true;hitPose=null;viewerPose=null;captureReported=false;captureErrors=0;referenceSelection.mode='simple';preview.enter();player.setPositionLocal([0,0,0]);document.body.classList.add('xr-active');viewMode.textContent='AR 已啟動 · 真實環境';capability.textContent='對準桌面 → 設定工作區 → 新增空間標記。移動手機，查看標記是否留在原位。';reticle=template.clone(null);reticle.setScalingLocal([.018,.018,.018]);reticle.active=false;invalidate('請對準有紋理、光線充足的桌面，等待黃色球後設定工作區。');post({type:'xr-share-status',active:true,supported:false,pending:true});
+  try{if(typeof XRWebGLBinding!=='undefined'&&XRWebGLBinding.prototype.getCameraImage)capture=new XRCameraCapture(session,canvas);}catch(e){console.warn('AR camera binding unavailable',e);}
+  if(!capture||(session.enabledFeatures&&!Array.from(session.enabledFeatures).includes('camera-access')))post({type:'xr-share-status',active:true,supported:false,reason:'unsupported'});
   if(demoInstructions){instructions.clear();demoInstructions=false;}updateInstructionUI();
   const select=()=>{if(!calibration)confirmReference();else if(pendingInstruction)placePending();else placeLocal();};
   session.addEventListener('select',select);try{const viewer=await session.requestReferenceSpace('viewer');const source=await session.requestHitTestSource({space:viewer});if(engine.xr?.session!==session){source.cancel();return;}hitSource=source;announce('看到黃色球後，按「設定工作區」即可開始。');}catch(e){announce('平面偵測無法啟動：'+e.message);}

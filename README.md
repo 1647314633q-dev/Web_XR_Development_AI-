@@ -46,6 +46,7 @@ https://visionlink-hk.visionlink-workspace.workers.dev/workspace/
 
 ```bash
 npm ci
+npm ci --prefix wonderland
 npm run prepare:runtime
 npm run check
 npm run build:independent
@@ -80,7 +81,7 @@ Cloudflare 為全球邊緣服務，這個方案適合香港試用，不能保證
 
 不得提交金鑰、有效邀請、Cookie、.env 私人值、OAuth 憑證、資料庫或客戶圖片。請閱讀 [SECURITY.md](SECURITY.md) 與 [第三方資產授權](docs/THIRD-PARTY-ASSETS.md)。保留模型與軟體署名；重新訓練的模型遵循原資料授權。此倉庫沒有宣告將第三方程式或 Wonderland runtime 改授權。
 
-38 項程式測試通過；雙頁已驗證受邀方繪圖、發起方接收及 AR 固定請求。正式網站已實測自行註冊、登入工作空間及建立房間；香港雙機跨網絡影音、AR 定位漂移與雙端精度仍須依 [Android 驗收](docs/ANDROID-ACCEPTANCE.md) 完成實機測試。
+43 項程式測試通過；雙頁已驗證受邀方繪圖、發起方接收及 AR 固定請求。正式網站已實測自行註冊、登入工作空間及建立房間；香港雙機跨網絡影音、AR 定位漂移與雙端精度仍須依 [Android 驗收](docs/ANDROID-ACCEPTANCE.md) 完成實機測試。
 
 
-AR 鏡頭切換保留帶「已暫停」提示的最後畫面；只停止普通鏡頭的視訊軌，保留收音及連線。雙人協作若未取得可共享的 AR 相機影像，會自動退出 AR 並嘗試恢復普通鏡頭。是否能共享原生 AR 視角取決於裝置的 Raw Camera Access；恢復失敗會提示手動開啟鏡頭。
+AR 鏡頭切換保留帶「已暫停」提示的最後畫面；只停止普通鏡頭的視訊軌，保留收音及連線。AR 影像由 XR 影格直接更新共享畫布並主動要求送出，不依赖普通頁面的計時器。首次取得影像等待 20 秒，開始共享後連續 10 秒無新影像會標示暫停並重試，不會因逾時強制退出 AR，也不把逾時當成永久不支援。手動離開 AR 後嘗試恢復普通鏡頭；恢復逾時會提示手動開啟鏡頭，遲到的相機串流會釋放。
