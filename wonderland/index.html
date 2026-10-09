@@ -25,10 +25,10 @@
  .xr-active button{font-size:13px;padding:12px}.xr-active #status{font-size:14px}
  @media(max-width:500px){.bar{padding:8px}button{padding:8px;font-size:12px}#capability,#status{padding-left:8px;padding-right:8px}}
  </style>
-</head>
-<body>
+<link rel="stylesheet" href="../ar-overlay.css"></head>
+<body data-operator-role="host">
  <canvas id="canvas" aria-label="Wonderland Engine 3D 預覽；進入 AR 後顯示真實環境的空間標記"></canvas>
- <div id="xr-ui">
+ <div id="xr-ui"><div class="ar-hud"><div class="ar-hud-top"><span id="ar-compact-state">AR · 設定工作區</span><button id="ar-exit-compact">離開 AR</button></div><div class="ar-dock"><p id="ar-compact-hint" role="status"></p><div class="ar-dock-actions"><button id="ar-action" disabled>設定工作區</button><button id="ar-tools-toggle" aria-expanded="false" aria-controls="ar-tool-sheet">工具／說明</button></div><button id="ar-finish-compact" hidden>完成畫線</button></div></div><div id="ar-tool-sheet"><button id="ar-tools-close">收起工具 ×</button>
   <div class="bar">
    <b>◈ WONDERLAND ENGINE <span id="view-mode">3D 預覽 · AR 尚未啟動</span></b>
    <div>
@@ -49,6 +49,8 @@
    <div id="reference-progress" hidden><span data-reference="0">○ 原點 O</span><span data-reference="1">○ 右方 X</span><span data-reference="2">○ 前方 Z</span></div>
   </details>
  </div>
+ </div>
+ <script type="module" src="../ar-overlay.js"></script>
  <script type="importmap">{"imports":{"@wonderlandengine/api":"./vendor/index.js","@wonderlandengine/api/decorators.js":"./vendor/index.js"}}</script>
  <script type="module" src="VisionLink-app.js"></script>
 </body>

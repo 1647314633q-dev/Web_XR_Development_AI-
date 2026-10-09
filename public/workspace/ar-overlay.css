@@ -1,0 +1,17 @@
+.ar-hud,#ar-tools-close{display:none}
+.xr-active #xr-ui{position:fixed;inset:0;width:100%;height:100%;padding:0;background:transparent!important;pointer-events:none}
+.xr-active .ar-hud{display:contents}
+.xr-active .ar-hud-top{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);left:12px;right:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;pointer-events:none}
+.ar-hud-top span{background:#123532df;border-radius:30px;padding:8px 12px;font-size:12px}
+.xr-active #ar-exit-compact{pointer-events:auto;background:#123532df;min-height:44px;padding:8px 12px}
+.xr-active .ar-dock{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);left:12px;right:12px;max-width:500px;margin:auto;background:#123532e8;border:1px solid #ffffff25;border-radius:16px;padding:10px;pointer-events:auto}
+.ar-dock p{margin:0 2px 8px;font-size:12px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ar-dock-actions{display:flex;gap:8px}.xr-active #ar-action{flex:1;min-width:0;min-height:48px;max-height:72px;overflow:hidden;background:#d6d98f;color:#153b30;font-weight:700;font-size:14px;padding:10px;overflow-wrap:anywhere}.xr-active #ar-tools-toggle{min-height:48px;font-size:13px;padding:8px 10px;white-space:nowrap}.xr-active #ar-finish-compact{margin-top:8px;width:100%;min-height:44px}
+.xr-active #ar-tool-sheet{display:none;position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 160px);left:12px;right:12px;margin:auto;max-width:500px;max-height:43dvh;overflow:auto;overscroll-behavior:contain;background:#123532f5;border:1px solid #ffffff35;border-radius:16px;padding:10px;pointer-events:auto}
+.xr-active #ar-tool-sheet.is-open{display:block}.xr-active #ar-tools-close{display:block;position:sticky;top:0;z-index:2;margin-left:auto;background:#214c40;min-height:44px}
+.xr-active #ar-tool-sheet .bar{padding:8px 0}.xr-active #ar-tool-sheet .bar>b,.xr-active #annotation-demo,.xr-active #exit-ar,.xr-active #ar-tool-sheet #confirm-point,.xr-active #ar-tool-sheet #ar-mark,.xr-active #ar-tool-sheet #ar-pending,.xr-active #ar-tool-sheet #ar-finish{display:none!important}
+.xr-active #ar-tool-sheet #instruction-tools,.xr-active #ar-tool-sheet #reference-panel,.xr-active #ar-tool-sheet #advanced-options,.xr-active #ar-tool-sheet #status,.xr-active #ar-tool-sheet #tracking-status,.xr-active #ar-tool-sheet #capability{padding:8px 2px;background:transparent}.xr-active #ar-tool-sheet button{min-height:44px;font-size:13px;padding:8px}.xr-active #ar-tool-sheet input,.xr-active #ar-tool-sheet select{font-size:16px;min-height:44px}.xr-active #ar-tool-sheet #instruction-tools label{width:100%}.xr-active #ar-tool-sheet #instruction-tools select{flex:1;min-width:0}.xr-active #ar-tool-sheet #instruction-tools input{width:100%}
+#xr-ui [hidden]{display:none!important}
+@media(orientation:landscape) and (max-height:550px){.xr-active .ar-dock{left:auto;width:min(420px,60vw);margin:0}.xr-active #ar-tool-sheet{bottom:12px;left:12px;right:auto;width:34vw;max-height:calc(100dvh - 80px)}.ar-dock p{-webkit-line-clamp:1}}
+
+.xr-active [id="ar-tool-sheet"] #annotation-demo{display:none!important}body[data-operator-role="host"] #instruction-tools,body[data-operator-role="host"] #add-pin,body[data-operator-role="host"] #clear-space,body[data-operator-role="host"] #annotation-demo{display:none!important}
