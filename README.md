@@ -19,8 +19,8 @@
 | 即時協作 | 雙向影音、鏡頭切換、獨立收音、指令與驗收清單同步 |
 | 貨品資料與核對 | 帳戶內持久資料庫、直接新增／編輯、Excel 表格貼上、CSV／TSV／JSON 匯入預覽、搜尋、CSV 匯出；條碼／QR 精確比對 |
 | 視覺 AI | MediaPipe 物件／人臉位置、AI 結果及帶標記影像同步；不辨識個人身份 |
-| 協作指令 | 由受邀方繪製箭頭、圈選、畫線及文字；「這裡拆／這裡檢查／按這個按鈕」快捷指令同步，暫停畫面、撤回與清除；指令隨巡檢紀錄保存 |
-| AR :真實 WebXR 平面定位、文字／箭頭／圈選／逐點線條固定、三點對齊及 XR 鏡頭分享 |<img width="311" height="326" alt="image" src="https://github.com/user-attachments/assets/ad8b53d7-63ec-41f5-bc25-713c89c4a9a1" />|
+| 協作指令：由受邀方繪製箭頭、圈選、畫線及文字；「這裡拆／這裡檢查／按這個按鈕」快捷指令同步，暫停畫面、撤回與清除；指令隨巡檢紀錄保存 |<img width="720" height="313" alt="image" src="https://github.com/user-attachments/assets/30fe66b1-d2cc-4bb2-8203-1b40fe99d7a5" />|
+| AR:真實 WebXR 平面定位、文字／箭頭／圈選／逐點線條固定、三點對齊及 XR 鏡頭分享 |<img width="311" height="326" alt="image" src="https://github.com/user-attachments/assets/ad8b53d7-63ec-41f5-bc25-713c89c4a9a1" />|
 | 紀錄 | 登入者保存自己的 D1 紀錄、頁籤內草稿、CSV 驗收摘要、完整 JSON 備份與 PNG 擷取 |
 | 貨箱損傷 | 已訓練實驗模型、ONNX 本機推論及公開測試報告；結果須人工覆核 |
 | 貨箱檢測示範，運用了AI模型進行檢測，精確率高達78%，無法檢測時會提醒呼叫人工。擁有多功能模式：物件檢測，人臉檢測，貨號識別以及損傷檢查 |<img width="1236" height="479" alt="image" src="https://github.com/user-attachments/assets/4e5c0aab-2df8-414b-ae44-4448e1354e8e" />|
