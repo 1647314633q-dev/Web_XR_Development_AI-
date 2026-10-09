@@ -1,9 +1,14 @@
 import {RemoteAi,canSend,validFrameId,validSpatialPin,validSpatialPose} from './collaboration-protocol.js';
 import {SharedView} from './shared-view.js';
 import {validAnnotation} from './annotation-protocol.js';
+import {XRVideoWatchdog} from './xr-video-watchdog.js';
 export function installLiveCollaboration({state,$,sendMessage,engineMessage,renderResults,drawOverlay,toast,addNote}){
  const remoteAI=new RemoteAi();state.remoteAI=remoteAI;state.aiStreamId=crypto.randomUUID();state.aiSeq=0;state.spatialFrame=crypto.randomUUID();state.spatialPins=[];state.calibrated=false;state.remoteCalibrated=false;
  const share=new SharedView({source:()=>state.imageSource||((state.stream&&$('localVideo').readyState>=2)?$('localVideo'):null),items:()=>state.ai?(state.decorateAI?.(state.detections)||state.detections):[],pins:()=>state.pins.filter(p=>p.target==='local'),onChange:()=>state.refreshVideo()});state.sharedView=share;
+ const videoStates=new Set(['switching-ar','ar','camera','restoring-camera','ar-unavailable','camera-failed']);
+ function reportVideo(mode){sendMessage({type:'video-state',mode});}
+ const cameraWatch=new XRVideoWatchdog(()=>{if(state.role==='host'&&state.channel?.readyState==='open'){reportVideo('ar-unavailable');$('shareStatus').textContent='此裝置無法共享 AR 鏡頭，正在返回現場鏡頭。';toast('手機未提供可共享的 AR 鏡頭，已返回視訊協作；畫面指令仍可使用。');engineMessage({type:'leave-ar'});}else $('shareStatus').textContent='AR 鏡頭暫未提供可共享影像；最後畫面已暫停。'});
+ function finishXR(){cameraWatch.stop();if(!share.xrActive)return;share.setXR(false,false);reportVideo('restoring-camera');$('shareStatus').textContent='正在恢復現場鏡頭…';Promise.resolve(state.restoreAfterXR?.()).then(ok=>{reportVideo(ok===false?'camera-failed':'camera');$('shareStatus').textContent=ok===false?'鏡頭恢復失敗；請按「開啟鏡頭」。夥伴保留的最後畫面已暫停。':'鏡頭、AI 框和畫面標記可同步共享';});}
  state.outputTrack=()=>share.xrActive?share.getTrack(null):state.imageSource?share.ensure():state.stream?share.getTrack(state.stream.getVideoTracks()[0]):null;
  state.refreshVideo=async()=>{try{await state.cameraSender?.replaceTrack(state.outputTrack());sendMessage({type:'camera',enabled:!!state.outputTrack()});state.publishAI();}catch(e){toast('共享畫面無法切換：'+e.message);}};
  state.aiSource=()=>share.xrActive?(share.xr&&performance.now()-share.xr.received<600?share.xr.bitmap:null):state.imageSource||$('localVideo');
@@ -20,8 +25,9 @@ export function installLiveCollaboration({state,$,sendMessage,engineMessage,rend
   sendMessage({type:'spatial-status',frame:state.spatialFrame,calibrated:state.calibrated,method:state.calibrationMethod});
   for(const pin of state.spatialPins)sendMessage({type:'spatial-pin',pin});state.publishAI();
  };
- state.liveOnClose=()=>{remoteAI.clear();state.remoteCalibrated=false;engineMessage({type:'peer-pose',pose:null});spatialStatus();renderResults();};
+ state.liveOnClose=()=>{$('remoteShareNotice').hidden=true;remoteAI.clear();state.remoteCalibrated=false;engineMessage({type:'peer-pose',pose:null});spatialStatus();renderResults();};
  state.liveMessage=(m)=>{
+  if(m.type==='video-state'&&videoStates.has(m.mode)){const notice=$('remoteShareNotice');notice.hidden=m.mode==='camera'||m.mode==='ar';notice.textContent=m.mode==='camera-failed'?'現場鏡頭恢復失敗，請現場夥伴重新開啟鏡頭；目前是已暫停的最後畫面。':m.mode==='ar-unavailable'?'此手機無法共享 AR 鏡頭，正在恢復現場視訊。':m.mode==='restoring-camera'?'正在恢復現場鏡頭；目前是已暫停的最後畫面。':'手機正在切換 AR；目前是已暫停的最後畫面。';}
   if(m.type==='ai-results'&&remoteAI.accept(m,performance.now())){if(m.active&&m.mode==='barcode')for(const d of m.items)state.acceptScan?.(d.label,'remote');renderResults();}
   if(m.type==='spatial-frame'&&state.role==='guest'&&validFrameId(m.frame)){
    if(state.spatialFrame!==m.frame){state.spatialFrame=m.frame;state.spatialPins=[];state.calibrated=false;engineMessage({type:'spatial-frame',frame:m.frame});}
@@ -38,11 +44,12 @@ export function installLiveCollaboration({state,$,sendMessage,engineMessage,rend
   if(data.type==='spatial-pin'&&validSpatialPin(data.pin,state.spatialFrame)&&state.spatialPins.length<100&&!state.spatialPins.some(p=>p.id===data.pin.id)){state.spatialPins.push(data.pin);sendMessage(data);spatialStatus();addNote(`新增 ${data.pin.number} 號空間標記（公尺座標；兩地精細對齊使用進階三點設定）。`);}
   if(data.type==='spatial-pose'&&validSpatialPose(data,state.spatialFrame)&&canSend(state.channel))sendMessage(data);
   if(data.type==='spatial-clear'){state.spatialPins=[];sendMessage({type:'spatial-clear',frame:state.spatialFrame});spatialStatus();}
-  if(data.type==='xr-share-status'){share.setXR(!!data.active,!!data.supported);$('shareStatus').textContent=data.active?data.supported?'AR 鏡頭及空間標記正在共享':'此裝置未提供 AR 鏡頭共享；夥伴影像暫停':'鏡頭、AI 框和畫面標記可同步共享';}
-  if(data.type==='xr-camera-frame'&&data.bitmap instanceof ImageBitmap){if(!share.xrActive){data.bitmap.close();return;}share.receiveXR(data.bitmap,Array.isArray(data.points)?data.points.slice(0,100):[],Array.isArray(data.annotations)?data.annotations.filter(validAnnotation).slice(0,64):[]);if(!state.worker&&state.ai)state.startXRai?.();}
+  if(data.type==='xr-share-status'){if(!data.active){finishXR();return;}if(!share.xrActive)share.setXR(true,false);if(data.pending)cameraWatch.start();else if(!data.supported)cameraWatch.fail('unsupported');}
+  if(data.type==='xr-camera-frame'&&data.bitmap instanceof ImageBitmap){if(!share.xrActive){data.bitmap.close();return;}const first=!share.xrSupported;share.receiveXR(data.bitmap,Array.isArray(data.points)?data.points.slice(0,100):[],Array.isArray(data.annotations)?data.annotations.filter(validAnnotation).slice(0,64):[]);cameraWatch.frame();if(first){reportVideo('ar');$('shareStatus').textContent='AR 鏡頭及空間標記正在共享';}if(!state.worker&&state.ai)state.startXRai?.();}
  };
  $('shareAnnotated').onchange=()=>{share.setEnabled($('shareAnnotated').checked);$('shareStatus').textContent=share.enabled?'鏡頭、AI 框和画面標記可同步共享':'共享原始鏡頭；夥伴按 AI 結果繪製偵測框';};
  let wasFresh=false;setInterval(()=>{const fresh=!!remoteAI.current(performance.now());if(fresh!==wasFresh){wasFresh=fresh;renderResults();}if(state.view==='remote')drawOverlay();},500);
  spatialStatus();window.addEventListener('pagehide',()=>share.destroy());
- window.visionLinkXR={prepare:()=>{state.stopForXR?.();share.setXR(true,false);}};
+ window.visionLinkXR={prepare:()=>{share.setXR(true,false);reportVideo('switching-ar');$('shareStatus').textContent='正在切換 AR；夥伴先保留已暫停的最後畫面。';state.stopForXR?.();},finish:finishXR};
+ window.addEventListener('pagehide',()=>cameraWatch.stop());
 }

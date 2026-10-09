@@ -17,3 +17,5 @@
 #catalogMapping details{margin:14px 0}#catalogMapping summary{font-size:13px;cursor:pointer}.catalog-manager .dialog-header{position:sticky;top:-28px;background:white;z-index:2;padding:10px 0}.catalog-manager button{min-height:44px}@media(max-width:600px){.catalog-manager .dialog-header{top:-18px}.catalog-manager input,.catalog-manager textarea,.catalog-manager select{font-size:16px}.catalog-manager .icon-button{min-width:44px}}
 
 .quick-commands{display:flex;gap:8px;align-items:center;flex-wrap:wrap;width:100%}.quick-commands span{font-size:12px}.quick-commands button{min-height:44px;background:#e6efc9;font-weight:700}.guidance-role{font-weight:700;color:#235b4d!important}.annotation-bar button:disabled{opacity:.45;cursor:not-allowed}body[data-guidance-role="host"] .quick-commands{display:none}@media(max-width:600px){.quick-commands button{flex:1;min-width:95px}}
+
+.remote-share-notice{position:absolute;top:60px;left:16px;right:16px;z-index:5;padding:10px 12px;border:1px solid #e0cb83;background:#173c3bed;color:#fff5ce;border-radius:8px;font-size:13px;pointer-events:none}.remote-share-notice[hidden]{display:none}
