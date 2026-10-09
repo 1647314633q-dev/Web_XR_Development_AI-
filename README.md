@@ -30,27 +30,27 @@
 
 「練習與備份」內仍提供 4 筆**虛構資料**，與正式帳戶資料分開。Motor A／Valve 03 名稱來自條碼對應資料表，不代表 AI 能辨識馬達型號。Excel `.xlsx` 請複製儲存格貼上或另存 CSV UTF-8；不直接解析活頁簿。可下載 CSV 日常交接，JSON 用於完整備份。
 
-## 本機啟動
+## 線上使用
 
-需要 **Node.js 24** 與 npm。Windows 可使用 npm.cmd。
+正式部署版本：
 
-```sh
+https://visionlink-hk.visionlink-workspace.workers.dev/workspace/
+
+一般使用者可直接透過正式 HTTPS 網址使用，不需要安裝 Node.js、下載專案或與開發者處於同一網絡。
+
+---
+
+## 本機開發
+
+需要 **Node.js 24** 與 npm。Windows 可使用 `npm.cmd`。
+
+```bash
 npm ci
 npm run prepare:runtime
 npm run check
 npm run build:independent
 npm run start:independent
-```
 
-開啟 http://localhost:4174 。第一次管理員設定碼會寫入被 Git 忽略的 `.local-data/independent-bootstrap.txt`；本機資料庫也在 `.local-data/`。這些不屬於正式站的帳戶或資料。
-
-本機要開放自行註冊，在未追蹤的 `.env.independent.local` 加入 `PUBLIC_REGISTRATION=true`，並先完成本機管理員設定。正式站已啟用自行註冊。
-
-`prepare:runtime` 下載約 9.2 MB 的已發佈 Wonderland 執行資產及實驗 ONNX 模型，再下載 Google 官方 MediaPipe 模型；每個檔案驗證 SHA256。第三方 JavaScript／WASM 由 npm 套件建置。這些二進位產物與原始訓練照片不直接放入 Git。首次準備需要網絡，執行網站辨識時使用本地資產。
-
-若公開資產的版本已改變，校驗會停止，不能跳過校驗；部署者需更新對應的 manifest 或使用 Wonderland Editor 從場景源檔重建。修改 `wonderland/` 後使用 `npm run build:wonderland`，再建置網站。
-
-手機真實鏡頭／AR 請使用 HTTPS 正式部署；本機 HTTP 只監聽 127.0.0.1。
 
 ## 自己部署
 
