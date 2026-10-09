@@ -9,7 +9,7 @@
 首次使用在登入頁按「首次使用？免費建立帳戶」，輸入顯示名稱並保存自己的個人金鑰，再進入工作空間建立房間。受邀夥伴憑完整房間邀請免登入加入。GitHub 帳戶與網站帳戶分開，無需你的管理員金鑰。
 
 房間最多兩人、有效一小時。私人紀錄按帳戶隔離。自行註冊每個網絡每日最多3個名額。登錄密匙并不會保存,用戶需自行保存。
-<img width="992" height="798" alt="image" src="https://github.com/user-attachments/assets/9ae202a3-ac40-4592-ad87-ab4f89371a1f" />
+<img width="1236" height="479" alt="image" src="https://github.com/user-attachments/assets/4e5c0aab-2df8-414b-ae44-4448e1354e8e" />
 
 ## 功能與實際範圍
 
