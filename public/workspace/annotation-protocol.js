@@ -4,7 +4,7 @@ export function validAnnotation(a){
  if(!a||!id(a.id)||!id(a.owner)||!id(a.target)||!Number.isSafeInteger(a.revision)||a.revision<1||a.revision>10000||!tools.includes(a.kind)||typeof a.text!=='string'||a.text.length>120||!['manual','ai','catalog'].includes(a.source)||!Array.isArray(a.points)||a.points.length<1||a.points.length>64||!a.points.every(p=>Array.isArray(p)&&p.length===2&&p.every(n=>Number.isFinite(n)&&n>=0&&n<=1)))return false;
  if(a.kind!=='label'&&a.points.length<2)return false;
  if(a.reference!==undefined&&!id(a.reference))return false;
- if(a.planar){const p=a.planar,point=q=>Array.isArray(q)&&q.length===2&&q.every(n=>Number.isFinite(n)&&n>=-2&&n<=3);if(a.spatial||!id(p.frame)||p.marker!==17||!Array.isArray(p.points)||p.points.length!==a.points.length||!p.points.every(point)||!Array.isArray(p.path)||p.path.length<1||p.path.length>64||!p.path.every(point))return false;}
+ if(a.planar!==undefined)return false;
  if(a.spatial&&(!id(a.spatial.frame)||!Array.isArray(a.spatial.points)||a.spatial.points.length!==a.points.length||!a.spatial.points.every(p=>Array.isArray(p)&&p.length===3&&p.every(n=>Number.isFinite(n)&&Math.abs(n)<=100))||!Array.isArray(a.spatial.normal)||a.spatial.normal.length!==3||!a.spatial.normal.every(Number.isFinite)||Math.abs(Math.hypot(...a.spatial.normal)-1)>.02))return false;
  if(a.spatial?.path!==undefined&&(!Array.isArray(a.spatial.path)||a.spatial.path.length<1||a.spatial.path.length>64||!a.spatial.path.every(p=>Array.isArray(p)&&p.length===3&&p.every(n=>Number.isFinite(n)&&Math.abs(n)<=100))))return false;
  return true;

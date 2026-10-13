@@ -1,6 +1,6 @@
 # iPad 物件／人臉分析
 
-iPad 的網頁 AR 已新增「定位圖 AR」入口，請參閱 [操作與驗收流程](IPAD-MARKER-AR.md)。這是獨立於原生 WebXR 的鏡頭定位圖追蹤模式。
+本專案的空間 AR 使用 Android 相容裝置的 Wonderland / WebXR。網站不提供 iPad 定位圖 AR；以下僅說明一般鏡頭的物件／人臉分析。
 
 若切換「物件」後看到 `Can't find available document`、`document is not defined` 或 OffscreenCanvas 錯誤，通常是影像分析執行環境問題，與匯入貨品表格或登入金鑰無關。
 

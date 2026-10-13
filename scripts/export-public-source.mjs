@@ -11,7 +11,7 @@ const skip = relative => /(?:^|\/)(?:node_modules|deploy|cache|\.cache|\.git|\.l
   || /\.local\.|\.map(?:\.gz)?$|\.tsbuildinfo$|\.log$/.test(relative)
   || ['scripts/refine.py','scripts/finalize.py'].includes(relative)
   || (relative.startsWith('public/workspace/wonderland/') && relative !== 'public/workspace/wonderland/index.html')
-  || (relative.startsWith('public/workspace/vendor/') && !['public/workspace/vendor/aruco','public/workspace/vendor/damage','public/workspace/vendor/mediapipe','public/workspace/vendor/mediapipe/models'].includes(relative) && !relative.startsWith('public/workspace/vendor/aruco/') && !/^public\/workspace\/vendor\/(?:damage\/(?:model-card\.json|ATTRIBUTION\.txt|TORCHVISION-LICENSE\.txt)|mediapipe\/models\/manifest\.json|APACHE-2\.0\.txt)$/.test(relative));
+  || (relative.startsWith('public/workspace/vendor/') && !['public/workspace/vendor/damage','public/workspace/vendor/mediapipe','public/workspace/vendor/mediapipe/models'].includes(relative) && !/^public\/workspace\/vendor\/(?:damage\/(?:model-card\.json|ATTRIBUTION\.txt|TORCHVISION-LICENSE\.txt)|mediapipe\/models\/manifest\.json|APACHE-2\.0\.txt)$/.test(relative));
 const secretPatterns = [/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/, /\b(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,})/, /\bAKIA[A-Z0-9]{16}\b/, /#invite=[A-Z2-9]{8}\.[a-f0-9]{48}/, /(?:API_TOKEN|AUTH_BOOTSTRAP_KEY|TURN_SHARED_SECRET)\s*[:=]\s*["'][A-Za-z0-9_\/-]{24,}["']/];
 async function include(relative) {
   if (skip(relative)) return;
