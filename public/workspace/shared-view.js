@@ -20,8 +20,8 @@ export class SharedView {
  getTrack(raw){if(this.xrActive||this.restoring)return this.ensure();return this.enabled?this.ensure()||raw:raw;}
  setEnabled(enabled){this.enabled=enabled;this.onChange();}
  setXR(active,supported){if(active&&!this.xrActive)this.draw();this.restoring=!active&&this.xrActive;this.xrActive=active;this.xrSupported=supported;this.xrPaused=false;if(!active||!supported){this.xr?.bitmap.close?.();this.xr=null;}this.onChange();this.draw();}
- receiveXRImage(data,points,annotations=[]){const c=this.xrCanvas;if(c.width!==data.width||c.height!==data.height){c.width=data.width;c.height=data.height;}c.getContext('2d').putImageData(data,0,0);this.receiveXR(c,points,annotations);}
- receiveXR(bitmap,points,annotations=[]){if(this.xr?.bitmap!==bitmap)this.xr?.bitmap.close?.();this.xr={bitmap,points,annotations,received:performance.now()};const first=!this.xrSupported;this.xrSupported=true;this.xrPaused=false;this.draw();if(first)this.onChange();}
+ receiveXRImage(data,points,annotations=[],camera=null){const c=this.xrCanvas;if(c.width!==data.width||c.height!==data.height){c.width=data.width;c.height=data.height;}c.getContext('2d').putImageData(data,0,0);this.receiveXR(c,points,annotations,camera);}
+ receiveXR(bitmap,points,annotations=[],camera=null){if(this.xr?.bitmap!==bitmap)this.xr?.bitmap.close?.();this.xr={bitmap,points,annotations,camera,received:performance.now()};const first=!this.xrSupported;this.xrSupported=true;this.xrPaused=false;this.draw();if(first)this.onChange();}
  pauseXR(){this.xrPaused=true;this.xr?.bitmap.close?.();this.xr=null;this.draw();}
  draw(){try{this.paint();}finally{this.track?.requestFrame?.();}}
  paint(){

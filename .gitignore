@@ -41,6 +41,7 @@ standalone/wrangler.*.local.*
 *.gz
 *.map
 public/workspace/vendor/*
+!public/workspace/vendor/aruco/
 !public/workspace/vendor/APACHE-2.0.txt
 !public/workspace/vendor/damage/
 public/workspace/vendor/damage/*

@@ -1,5 +1,7 @@
 # iPad 物件／人臉分析
 
+iPad 的網頁 AR 已新增「定位圖 AR」入口，請參閱 [操作與驗收流程](IPAD-MARKER-AR.md)。這是獨立於原生 WebXR 的鏡頭定位圖追蹤模式。
+
 若切換「物件」後看到 `Can't find available document`、`document is not defined` 或 OffscreenCanvas 錯誤，通常是影像分析執行環境問題，與匯入貨品表格或登入金鑰無關。
 
 Apple 行動裝置（包括以 Mac 身份顯示網頁的 iPad）使用網頁內 HTML Canvas 和 CPU 執行物件／人臉模型，避開 MediaPipe 在背景執行緒中要求 DOM 的路徑。影像仍在本機分析。其他裝置保留背景執行緒；若出現繪圖環境錯誤會再試網頁相容路徑。相容路徑最多使用 640 像素寬影像，分析完成後間隔 700ms 再處理下一幀，避免並行堆積。速度仍取決於實機。

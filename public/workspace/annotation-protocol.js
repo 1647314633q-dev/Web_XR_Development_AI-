@@ -3,7 +3,10 @@ export const tools=['arrow','circle','line','label'];
 export function validAnnotation(a){
  if(!a||!id(a.id)||!id(a.owner)||!id(a.target)||!Number.isSafeInteger(a.revision)||a.revision<1||a.revision>10000||!tools.includes(a.kind)||typeof a.text!=='string'||a.text.length>120||!['manual','ai','catalog'].includes(a.source)||!Array.isArray(a.points)||a.points.length<1||a.points.length>64||!a.points.every(p=>Array.isArray(p)&&p.length===2&&p.every(n=>Number.isFinite(n)&&n>=0&&n<=1)))return false;
  if(a.kind!=='label'&&a.points.length<2)return false;
+ if(a.reference!==undefined&&!id(a.reference))return false;
+ if(a.planar){const p=a.planar,point=q=>Array.isArray(q)&&q.length===2&&q.every(n=>Number.isFinite(n)&&n>=-2&&n<=3);if(a.spatial||!id(p.frame)||p.marker!==17||!Array.isArray(p.points)||p.points.length!==a.points.length||!p.points.every(point)||!Array.isArray(p.path)||p.path.length<1||p.path.length>64||!p.path.every(point))return false;}
  if(a.spatial&&(!id(a.spatial.frame)||!Array.isArray(a.spatial.points)||a.spatial.points.length!==a.points.length||!a.spatial.points.every(p=>Array.isArray(p)&&p.length===3&&p.every(n=>Number.isFinite(n)&&Math.abs(n)<=100))||!Array.isArray(a.spatial.normal)||a.spatial.normal.length!==3||!a.spatial.normal.every(Number.isFinite)||Math.abs(Math.hypot(...a.spatial.normal)-1)>.02))return false;
+ if(a.spatial?.path!==undefined&&(!Array.isArray(a.spatial.path)||a.spatial.path.length<1||a.spatial.path.length>64||!a.spatial.path.every(p=>Array.isArray(p)&&p.length===3&&p.every(n=>Number.isFinite(n)&&Math.abs(n)<=100))))return false;
  return true;
 }
 export function acceptAnnotation(list,a){if(!validAnnotation(a))return false;const index=list.findIndex(i=>i.id===a.id);if(index>=0){const old=list[index];if(a.owner!==old.owner||a.target!==old.target||a.revision<=old.revision)return false;list[index]=a;}else{if(list.length>=64)return false;list.push(a);}return true;}
@@ -17,9 +20,11 @@ export function shapePath(kind,points){
 export function placeOnSurface(a,origin,normal,rightHint){
  const dot=(x,y)=>x.reduce((s,v,i)=>s+v*y[i],0),unit=x=>{const l=Math.hypot(...x);if(l<1e-5)throw new Error('請換一個角度對準表面。');return x.map(v=>v/l);},cross=(x,y)=>[x[1]*y[2]-x[2]*y[1],x[2]*y[0]-x[0]*y[2],x[0]*y[1]-x[1]*y[0]];
  const n=unit(normal),right=unit(rightHint.map((v,i)=>v-dot(rightHint,n)*n[i])),up=unit(cross(n,right));const anchor=a.kind==='arrow'?a.points.at(-1):a.points[0],xs=a.points.map(p=>p[0]),ys=a.points.map(p=>p[1]),extent=Math.max(Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys),.1),scale=.25/extent;
- return {normal:n,points:a.points.map(p=>origin.map((v,i)=>v+right[i]*(p[0]-anchor[0])*scale-up[i]*(p[1]-anchor[1])*scale+n[i]*.006))};
+ const transform=p=>origin.map((v,i)=>v+right[i]*(p[0]-anchor[0])*scale-up[i]*(p[1]-anchor[1])*scale+n[i]*.006);
+ return {normal:n,points:a.points.map(transform),path:shapePath(a.kind,a.points).map(transform)};
 }
 export function spatialPath(a){
+ if(a.spatial.path)return a.spatial.path;
  const p=a.spatial.points,n=a.spatial.normal,sub=(x,y)=>x.map((v,i)=>v-y[i]),add=(x,y)=>x.map((v,i)=>v+y[i]),scale=(x,s)=>x.map(v=>v*s),cross=(x,y)=>[x[1]*y[2]-x[2]*y[1],x[2]*y[0]-x[0]*y[2],x[0]*y[1]-x[1]*y[0]],unit=x=>scale(x,1/(Math.hypot(...x)||1));
  if(a.kind==='label'||a.kind==='line')return p;
  const first=p[0],last=p.at(-1),delta=sub(last,first),length=Math.hypot(...delta);
