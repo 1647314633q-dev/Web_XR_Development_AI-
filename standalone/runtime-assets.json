@@ -4,8 +4,8 @@
   "assets": [
     {
       "path": "public/workspace/wonderland/VisionLink-app.js",
-      "bytes": 63576,
-      "sha256": "56b29a28a033cadd76ccde80364fa22609e06e2f274514eb163e8a5c1907ed18"
+      "bytes": 63604,
+      "sha256": "10eb71566abfca43eabe67d7e4239e8dfde7027d5f876a1a34cccec5a3776e37"
     },
     {
       "path": "public/workspace/wonderland/VisionLink-bundle.js",
@@ -15,7 +15,7 @@
     {
       "path": "public/workspace/wonderland/VisionLink.bin",
       "bytes": 259212,
-      "sha256": "ce90d7dc59f947b445d9d225376b8651ed72a53865986b8b3d0dff9f370c6900"
+      "sha256": "e8893482780f7a529f3c7e60cb0adf8102010686f023e7d948df5c75a83a16bd"
     },
     {
       "path": "public/workspace/wonderland/WonderlandRuntime-LoadingScreen.bin",
